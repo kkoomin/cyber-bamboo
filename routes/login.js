@@ -1,6 +1,6 @@
-const con=require('./connection');
-const express=require('express');
-const router=express.Router();
+const con = require("./connection");
+const express = require("express");
+const router = express.Router();
 
 router.post('/',(req,res)=>{
    con.connect((err)=>{
@@ -22,5 +22,6 @@ router.post('/',(req,res)=>{
    }); 
 });
 
+     
 
-module.exports=router;
+module.exports = router;
