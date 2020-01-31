@@ -6,6 +6,7 @@ const indexRouter = require("./routes/index");
 const signupRouter = require("./routes/signup");
 const homeRouter = require("./routes/home");
 const loginRouter = require("./routes/login");
+const boardRouter = require("./routes/board");
 
 const app = express();
 
@@ -27,10 +28,12 @@ app.use(
 );
 
 // Router
+app.use("/board",boardRouter);
 app.use("/login", loginRouter);
 app.use("/signup", signupRouter);
 app.use("/", indexRouter);
 app.use("/home", homeRouter);
+
 
 app.listen(3000, () => {
   console.log("Launch Bamboo >.<");

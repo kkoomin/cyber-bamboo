@@ -14,7 +14,7 @@ router.post("/", (req, res) => {
   con.query(sql, function(err, result) {
     if (err) throw err;
     if (err || !name || !email || !password) {
-      console.log("Insert Fail⛔ please retry🌈");
+      console.log("Insert Fail⛔");
       res.json({ message: `뭔가 잘못됐어요 다시 시도해주세요❗` });
     } else {
       console.log("Insert Success!✅");

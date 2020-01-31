@@ -86,13 +86,14 @@ function renderWrite() {
     <table class="write-table" border="1">
       <tr>
         <td>
-          <input type="text" class="write-input" placeholder="제목을 입력하삼" />
+          <input type="text" id="board-write-title" class="write-input" placeholder="제목을 입력하삼" />
         </td>
       </tr>
       <tr>
         <td>
           <textarea
             name="textarea"
+            id="board-write-content"
             class="write-textarea"
             rows="6"
             placeholder="내용을 입력하삼"
@@ -101,12 +102,22 @@ function renderWrite() {
       </tr>
       <tr>
         <td class="write-table-btn no-border">
-          <button class="main-button-small">올리는 것이여</button>
+          <button id="board-write_btn" class="main-button-small">올리는 것이여</button>
         </td>
       </tr>
     </table>
   </div>
 `;
+    $(document).on('click','#board-write_btn',()=>{
+      const title=$('#board-write-title').val();
+      const content=$('#board-write-content').val();
+
+      const send_param={title,content};
+      $.post('/board',send_param,(returnData)=>{
+        alert(returnData.message);
+      });
+    });
+
 
     $(".board-table").hide();
     $("#write-btn").hide();
