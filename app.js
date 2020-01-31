@@ -5,6 +5,7 @@ const session = require("express-session");
 const indexRouter = require("./routes/index");
 const signupRouter=require('./routes/signup');
 const homeRouter = require("./routes/home");
+const loginRouter=require("./routes/login");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(
 );
 
 // Router
+app.use("/login",loginRouter);
 app.use("/signup",signupRouter);
 app.use("/", indexRouter);
 app.use("/home", homeRouter);

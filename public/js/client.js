@@ -2,18 +2,17 @@ $(document).ready(function() {
   renderSignUp();
   renderWrite();
   renderLunch();
+  renderLogin();
 });
 
 function renderSignUp() {
   $("#main-signup").click(() => {
     let signupForm = `
     <div class="main-signup">
-        <form action="">
-            <input type="text" id="signup-email" name="signup-email" placeholder="email"><br>
-            
-            <input type="password" id="signup-password" name="signup-password" placeholder="password"><br>
-    
-            <input type="text" id="signup-name" name="signup-name" placeholder="name"><br>
+        <form>
+            <input type="text" id="signup-name" name="signup-name" placeholder="name"><br>              
+            <input type="password" id="signup-password" name="signup-password" placeholder="password"><br>   
+            <input type="text" id="signup-email" name="signup-email" placeholder="email"><br>       
             
             <button id="signup_btn" class="main-button-big">가입하기</button>
         </form>
@@ -37,6 +36,40 @@ function renderSignUp() {
     });
   });
 }
+
+function renderLogin(){
+  $("#main-login").click(()=>{
+    let loginForm = `
+    <div class="main-login">
+      <form>
+        
+        <input id="login-email" type="text" placeholder="email"><br>
+        <input id="login-password" type="password" placeholder="password"><br>
+        
+
+        <button id="login_btn" class="main-button-big">로그인하기</button>
+
+      </form>
+    </div>`;
+
+    $("#main-login").hide();
+    $(".main-container").prepend(loginForm);
+
+    $(document).on('click','#login_btn',()=>{
+      const email=$('#login-email').val();
+      const password=$('#login-password').val();
+
+      const send_param={email,password};
+
+      $.post('/login',send_param,(returnData)=>{
+        alert(returnData.message);
+        $(location).attr('href','/home');
+      });
+
+    });
+  });
+}
+
 
 function renderWrite() {
   $("#write-btn").click(() => {

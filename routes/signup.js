@@ -15,7 +15,7 @@ router.post('/',(req,res)=>{
     
     con.connect((err)=>{
         
-        var sql=`INSERT INTO users (name,email,password) VALUES ('${name}','${password}','${email}')`;
+        var sql=`INSERT INTO users (name,email,password) VALUES ('${name}','${email}','${password}')`;
         
         con.query(sql,function(err,result){
             if(err){
