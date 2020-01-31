@@ -24,6 +24,10 @@ button {
   all: unset;
 }
 
+button:focus {
+  outline: none;
+}
+
 /* General */
 .centered {
   text-align: center;
