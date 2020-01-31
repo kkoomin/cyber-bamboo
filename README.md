@@ -35,7 +35,12 @@
 - Framework, Libraries
 
   - Bootstrap
+  - jquery
   - Express
+  - npm
+
+    - nodemon (dev)
+    - ejs
 
 ## Contribution
 
