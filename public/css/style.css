@@ -45,6 +45,49 @@ button:focus {
   text-align: center;
 }
 
+/* button */
+
+.main-button-big {
+  /* font-family: "SSM", sans-serif;
+    font-weight: normal; */
+  display: block;
+  text-align: center;
+  width: 200px;
+  height: 20px;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border: 2px solid var(--bamboo-green);
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+
+.main-button-big:hover {
+  background-color: var(--bamboo-green);
+  color: white;
+  box-shadow: 5px 5px 5px var(--shadow);
+}
+
+.main-button-small {
+  /* font-family: "SSM", sans-serif; */
+  /* color: white; */
+  display: inline-block;
+  text-align: center;
+  width: 100px;
+  height: 20px;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  border: 2px solid var(--bamboo-green);
+  border-radius: 20px;
+  transition: all 0.2s;
+  font-weight: bold;
+}
+
+.main-button-small:hover {
+  background-color: var(--bamboo-green);
+  color: white;
+  box-shadow: 5px 5px 5px var(--shadow);
+}
+
 /* 
  * Specific 
  */
@@ -85,6 +128,10 @@ button:focus {
   height: 90vh;
   margin: auto;
 }
+.main-wrapper {
+  padding: 5% 0;
+  text-align: center;
+}
 
 .main-title {
   top: 50;
@@ -93,55 +140,45 @@ button:focus {
   font-size: 200px;
 }
 
-.main-button_container {
+.main-desc {
+  font-family: "SSM", sans-serif;
+  color: var(--light-green);
+  font-size: 30px;
+}
+
+.main-container {
   margin-top: 3rem;
-}
-
-.main-button-big {
-  /* font-family: "SSM", sans-serif;
-  font-weight: normal; */
-  display: block;
-  text-align: center;
-  width: 200px;
-  height: 20px;
-  margin: 1rem auto;
-  padding: 0.5rem;
-  border: 2px solid var(--bamboo-green);
-  border-radius: 20px;
-  transition: all 0.2s;
-}
-
-.main-button-big:hover {
-  background-color: var(--bamboo-green);
-  color: white;
-  box-shadow: 5px 5px 5px var(--shadow);
-}
-
-.main-button-small {
-  /* font-family: "SSM", sans-serif; */
-  /* color: white; */
-  display: inline-block;
-  text-align: center;
-  width: 100px;
-  height: 20px;
-  margin: 1rem auto;
-  padding: 0.5rem;
-  border: 2px solid var(--bamboo-green);
-  border-radius: 20px;
-  transition: all 0.2s;
-  font-weight: bold;
-}
-
-.main-button-small:hover {
-  background-color: var(--bamboo-green);
-  color: white;
-  box-shadow: 5px 5px 5px var(--shadow);
 }
 
 .main-signup,
 .main-login {
   /* box-shadow: 3px 3px 3px grey; */
-  border: 2px solid black;
+  /* border: 1px solid var(--beige); */
+  width: 40%;
+  height: auto;
+  margin: auto;
+}
+
+.main-signup-form,
+.main-login-form {
+  margin: 1rem auto 2rem auto;
+}
+
+.main-signup-form input,
+.main-login-form input {
+  border: 1px solid grey;
+  width: 80%;
+  height: 30px;
+  margin: 0.2rem auto;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.main-signup-title,
+.main-login-title {
+  font-family: "SSM", sans-serif;
+  color: var(--main-green);
+  font-size: 30px;
 }
 
 /* board */
@@ -211,7 +248,7 @@ button:focus {
 }
 
 .close {
-  color: #aaa;
+  color: grey;
   float: left;
   font-size: 30px;
   font-weight: bold;

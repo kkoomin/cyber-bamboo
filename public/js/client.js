@@ -14,7 +14,8 @@ function renderSignUp() {
 
     let signupForm = `
     <div class="main-signup">
-        <form>
+        <div class="main-signup-title">회원가입</div>
+        <form class="main-signup-form">
         <input type="text" id="signup-email" name="signup-email" placeholder="email"><br>       
         <input type="password" id="signup-password" name="signup-password" placeholder="password"><br>   
         <input type="text" id="signup-name" name="signup-name" placeholder="name"><br>   
@@ -52,14 +53,10 @@ function renderLogin() {
 
     let loginForm = `
     <div class="main-login">
-      <form>
-        
+      <div class="main-login-title">로그인</div>
+      <form class="main-login-form">
         <input id="login-email" type="text" placeholder="email"><br>
         <input id="login-password" type="password" placeholder="password"><br>
-        
-
-        
-
       </form>
       <button id="login_btn" class="main-button-big">로그인하기</button>
     </div>`;
