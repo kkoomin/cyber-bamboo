@@ -1,5 +1,6 @@
 $(document).ready(function() {
   renderSignUp();
+
 });
 
 function renderSignUp() {
@@ -12,13 +13,28 @@ function renderSignUp() {
             <input type="password" id="signup-password" name="signup-password" placeholder="password"><br>
     
             <input type="text" id="signup-name" name="signup-name" placeholder="name"><br>
-    
-            <button class="main-button">가입하기</button>
-    
+            
+            <button id="signup_btn" class="main-button">가입하기</button>
         </form>
+        
     </div>
     `;
+
     $("#main-signup").hide();
     $(".main-container").prepend(signupForm);
+
+    $(document).on('click','#signup_btn',()=>{
+      const name=$("#signup-name").val();
+      const password=$("#signup-password").val();
+      const email=$("#signup-email").val();
+
+      const send_param={name,password,email};
+
+      $.post("/signup",send_param,(returnData)=>{
+        alert(returnData.message);
+      });
+    });
+
+
   });
 }
