@@ -1,6 +1,6 @@
 # 시큐어 C반 대나무숲
 
-- 가제 : Cyber Bamboo
+- Cyber Bamboo
 
 ## Overview
 
