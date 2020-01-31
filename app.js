@@ -3,6 +3,7 @@ const path = require("path");
 const session = require("express-session");
 
 const indexRouter = require("./routes/index");
+const homeRouter = require("./routes/home");
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(
 
 // Router
 app.use("/", indexRouter);
+app.use("/home", homeRouter);
 
 app.listen(3000, () => {
   console.log("Launch Bamboo >.<");
