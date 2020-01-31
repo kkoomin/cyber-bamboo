@@ -7,14 +7,17 @@ $(document).ready(function() {
 
 function renderSignUp() {
   $("#main-signup").click(() => {
+    if ($(".main-login")) {
+      $(".main-login").hide();
+      $("#main-login").show();
+    }
+
     let signupForm = `
     <div class="main-signup">
         <form>
         <input type="text" id="signup-email" name="signup-email" placeholder="email"><br>       
         <input type="password" id="signup-password" name="signup-password" placeholder="password"><br>   
         <input type="text" id="signup-name" name="signup-name" placeholder="name"><br>   
-            
-            
         </form>
         <button id="signup_btn" class="main-button-big">가입하기</button>
     </div>
@@ -32,13 +35,21 @@ function renderSignUp() {
 
       $.post("/signup", send_param, returnData => {
         alert(returnData.message);
+        $("#signup-name").val("");
+        $("#signup-email").val("");
+        $("#signup-password").val("");
       });
     });
   });
 }
 
-function renderLogin(){
-  $("#main-login").click(()=>{
+function renderLogin() {
+  $("#main-login").click(() => {
+    if ($(".main-signup")) {
+      $(".main-signup").hide();
+      $("#main-signup").show();
+    }
+
     let loginForm = `
     <div class="main-login">
       <form>
@@ -56,21 +67,19 @@ function renderLogin(){
     $("#main-login").hide();
     $(".main-container").prepend(loginForm);
 
-    $(document).on('click','#login_btn',()=>{
-      const email=$('#login-email').val();
-      const password=$('#login-password').val();
+    $(document).on("click", "#login_btn", () => {
+      const email = $("#login-email").val();
+      const password = $("#login-password").val();
 
-      const send_param={email,password};
+      const send_param = { email, password };
 
-      $.post('/login',send_param,(returnData)=>{
+      $.post("/login", send_param, returnData => {
         alert(returnData.message);
-        $(location).attr('href','/home');
+        $(location).attr("href", "/home");
       });
-
     });
   });
 }
-
 
 function renderWrite() {
   $("#write-btn").click(() => {

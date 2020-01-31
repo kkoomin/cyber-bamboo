@@ -138,6 +138,12 @@ button:focus {
   box-shadow: 5px 5px 5px var(--shadow);
 }
 
+.main-signup,
+.main-login {
+  /* box-shadow: 3px 3px 3px grey; */
+  border: 2px solid black;
+}
+
 /* board */
 .board-container {
   margin: auto;
