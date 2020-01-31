@@ -1,6 +1,6 @@
 $(document).ready(function() {
   renderSignUp();
-
+  
 });
 
 function renderSignUp() {
@@ -14,7 +14,7 @@ function renderSignUp() {
     
             <input type="text" id="signup-name" name="signup-name" placeholder="name"><br>
             
-            <button id="signup_btn" class="main-button">가입하기</button>
+            <button id="signup_btn" class="main-button-big">가입하기</button>
         </form>
         
     </div>
