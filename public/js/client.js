@@ -10,13 +10,13 @@ function renderSignUp() {
     let signupForm = `
     <div class="main-signup">
         <form>
-            <input type="text" id="signup-name" name="signup-name" placeholder="name"><br>              
-            <input type="password" id="signup-password" name="signup-password" placeholder="password"><br>   
-            <input type="text" id="signup-email" name="signup-email" placeholder="email"><br>       
+        <input type="text" id="signup-email" name="signup-email" placeholder="email"><br>       
+        <input type="password" id="signup-password" name="signup-password" placeholder="password"><br>   
+        <input type="text" id="signup-name" name="signup-name" placeholder="name"><br>   
             
-            <button id="signup_btn" class="main-button-big">가입하기</button>
+            
         </form>
-        
+        <button id="signup_btn" class="main-button-big">가입하기</button>
     </div>
     `;
 
@@ -47,9 +47,10 @@ function renderLogin(){
         <input id="login-password" type="password" placeholder="password"><br>
         
 
-        <button id="login_btn" class="main-button-big">로그인하기</button>
+        
 
       </form>
+      <button id="login_btn" class="main-button-big">로그인하기</button>
     </div>`;
 
     $("#main-login").hide();
