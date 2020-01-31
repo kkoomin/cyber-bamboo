@@ -34,7 +34,7 @@ function renderSignUp() {
 
       const send_param = { name, password, email };
 
-      $.post("/signup", send_param, returnData => {
+      $.post("/signup", send_param, (returnData) => {
         alert(returnData.message);
         $("#signup-name").val("");
         $("#signup-email").val("");
@@ -70,9 +70,9 @@ function renderLogin() {
 
       const send_param = { email, password };
 
-      $.post("/login", send_param, returnData => {
+      $.post("/login", send_param, (returnData) => {
         alert(returnData.message);
-        $(location).attr("href", "/home");
+        if (returnData.status != "fail") $(location).attr("href", "/home");
       });
     });
   });
