@@ -1,6 +1,7 @@
 $(document).ready(function() {
   renderSignUp();
   renderWrite();
+  renderLunch();
 });
 
 function renderSignUp() {
@@ -82,5 +83,14 @@ function renderWrite() {
     });
 
     $(".board-container").prepend(writeForm);
+  });
+}
+
+function renderLunch() {
+  $("#lunch-btn").click(() => {
+    $(".modal").show();
+  });
+  $(".close").click(() => {
+    $("#modal").hide();
   });
 }
