@@ -9,6 +9,7 @@ $(document).ready(function() {
   boardPagination();
   logout();
   renderPost();
+  renderDelete();
   renderBoard();
 });
 
@@ -207,7 +208,7 @@ function renderPost() {
     const send_param = { id: e.target.previousElementSibling.innerText };
     $.post("/post", send_param, (returnData) => {
       const postData = returnData.result[0];
-      console.log(postData);
+
       let postForm = `
       <div class="post-container centered">
        <div class="post">
@@ -215,6 +216,7 @@ function renderPost() {
           <div class="post-title">${postData.title}</div>
           <div class="post-info">${postData.author}, ${postData.createdAt}</div>
           <div class="post-content">${postData.content}</div>
+          <button class="main-button-small" id="post-delete-btn">삭제</button>
         </div>
       </div>
       `;
@@ -225,5 +227,12 @@ function renderPost() {
       <button class="main-button-small" id="board-watch-btn">게시판</button>
       `);
     });
+  });
+}
+
+function renderDelete() {
+  $(document).on("click", "#post-delete-btn", () => {
+    alert();
+    location.href = "/home";
   });
 }
