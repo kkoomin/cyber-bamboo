@@ -3,11 +3,12 @@ $(document).ready(function() {
   renderWrite();
   renderLunch();
   renderLogin();
-  getLogin();
+  login();
   createUser();
   createPost();
   boardPagination();
   logout();
+  renderPost();
 });
 
 function renderSignUp() {
@@ -73,7 +74,7 @@ function renderLogin() {
   });
 }
 
-function getLogin() {
+function login() {
   $(document).on("click", "#login_btn", () => {
     const email = $("#login-email").val();
     const password = $("#login-password").val();
@@ -176,8 +177,8 @@ function boardPagination() {
   $("#board-page-nav a").bind("click", function() {
     $("#board-page-nav a").removeClass("active");
     $(this).addClass("active");
-    let currPage = $(this).attr("rel");
-    let startItem = currPage * rowsShown;
+    let currentPage = $(this).attr("rel");
+    let startItem = currentPage * rowsShown;
     let endItem = startItem + rowsShown;
     $(".board-table tbody tr")
       .hide()
@@ -195,4 +196,8 @@ function logout() {
   });
 }
 
-function renderPost() {}
+function renderPost() {
+  $(".board-body-title").click(e => {
+    console.log(e.target.innerText);
+  });
+}

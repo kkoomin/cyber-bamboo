@@ -236,8 +236,11 @@ button:focus {
 #board-page-nav a:hover {
   color: red;
 }
-#board-title {
+#board-head-title {
   width: 50%;
+}
+.board-body-title {
+  cursor: pointer;
 }
 
 /* post */

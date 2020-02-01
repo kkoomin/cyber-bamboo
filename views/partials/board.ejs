@@ -2,12 +2,12 @@
   <table class="board-table" border="1">
     <thead>
       <tr>
-        <td id="board-id"><%#= ID %></td id="id">
-        <td id="board-title">제목</td>
-        <td id="board-author">작성자</td>
-        <td id="board-createdAt">작성일</td>
-        <td id="board-view">조회</td>
-        <td id="board-like">좋아요</td>
+        <td id="board-head-id"><%#= ID %></td id="id">
+        <td id="board-head-title">제목</td>
+        <td id="board-head-author">작성자</td>
+        <td id="board-head-createdAt">작성일</td>
+        <td id="board-head-view">조회</td>
+        <td id="board-head-like">좋아요</td>
       </tr>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@
 
       <tr>
         <td><%= result[i].id %></td>
-        <td><%= result[i].title %></td>
+        <td class="board-body-title"><%= result[i].title %></td>
         <td><%= result[i].author %></td>
         <td><%= result[i].createdAt %></td>
         <td><%= result[i].views %></td>
