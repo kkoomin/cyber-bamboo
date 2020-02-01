@@ -3,8 +3,10 @@ $(document).ready(function() {
   renderWrite();
   renderLunch();
   renderLogin();
+  getLogin();
   createUser();
   createPost();
+  boardPagination();
 });
 
 function renderSignUp() {
@@ -67,17 +69,19 @@ function renderLogin() {
 
     $("#main-login").hide();
     $(".main-container").prepend(loginForm);
+  });
+}
 
-    $(document).on("click", "#login_btn", () => {
-      const email = $("#login-email").val();
-      const password = $("#login-password").val();
+function getLogin() {
+  $(document).on("click", "#login_btn", () => {
+    const email = $("#login-email").val();
+    const password = $("#login-password").val();
 
-      const send_param = { email, password };
+    const send_param = { email, password };
 
-      $.post("/login", send_param, (returnData) => {
-        alert(returnData.message);
-        if (returnData.status != "fail") $(location).attr("href", "/home");
-      });
+    $.post("/login", send_param, (returnData) => {
+      alert(returnData.message);
+      if (returnData.status != "fail") $(location).attr("href", "/home");
     });
   });
 }
@@ -120,11 +124,8 @@ function renderWrite() {
       <button class="main-button-small" id="board-watch-btn">게시판</button>
     `);
 
-    $(document).on("click", "#board-btn", () => {
-      $("#board-btn").remove();
-      $(".write-container").remove();
-      $(".board-table").show();
-      $("#write-btn").show();
+    $(document).on("click", "#board-watch-btn", () => {
+      location.href = "/home";
     });
 
     $(".board-container").prepend(writeForm);
@@ -148,10 +149,39 @@ function createPost() {
     const send_param = { title, content };
     $.post("/write", send_param, (returnData) => {
       alert(returnData.message);
+      location.href = "/home";
     });
   });
 }
 
-function renderBoard() {
-  $(document).on("click", "#board-write-btn", () => {});
+function boardPagination() {
+  $(".board-table").after('<div id="board-page-nav"></div>');
+  let rowsShown = 5;
+  let rowsTotal = $(".board-table tbody tr").length;
+  let numPages = rowsTotal / rowsShown;
+
+  for (let i = 0; i < numPages; i++) {
+    let pageNum = i + 1;
+    $("#board-page-nav").append(
+      '<a href="#" rel="' + i + '">' + pageNum + "</a> "
+    );
+  }
+  $(".board-table tbody tr").hide();
+  $(".board-table tbody tr")
+    .slice(0, rowsShown)
+    .show();
+  $("#board-page-nav a:first").addClass("active");
+  $("#board-page-nav a:first").addClass("focus");
+  $("#board-page-nav a").bind("click", function() {
+    $("#board-page-nav a").removeClass("active");
+    $(this).addClass("active");
+    let currPage = $(this).attr("rel");
+    let startItem = currPage * rowsShown;
+    let endItem = startItem + rowsShown;
+    $(".board-table tbody tr")
+      .hide()
+      .slice(startItem, endItem)
+      .css("display", "table-row");
+    // .animate({ opacity: 1 }, 300);
+  });
 }
