@@ -14,6 +14,7 @@ router.post("/", (req, res) => {
         let message = `로그인 실패 다시 시도하세요⛔`;
         if (result.length > 0) {
           status = "success";
+          req.session.user = result[0];
           req.session.email = result[0].email;
           req.session.name = result[0].name;
           message = `🎋${result[0].name}님 어서오세요🎋`;
