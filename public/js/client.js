@@ -3,6 +3,8 @@ $(document).ready(function() {
   renderWrite();
   renderLunch();
   renderLogin();
+  createUser();
+  createPost();
 });
 
 function renderSignUp() {
@@ -26,20 +28,22 @@ function renderSignUp() {
 
     $("#main-signup").hide();
     $(".main-container").prepend(signupForm);
+  });
+}
 
-    $(document).on("click", "#signup_btn", () => {
-      const name = $("#signup-name").val();
-      const password = $("#signup-password").val();
-      const email = $("#signup-email").val();
+function createUser() {
+  $(document).on("click", "#signup_btn", () => {
+    const name = $("#signup-name").val();
+    const password = $("#signup-password").val();
+    const email = $("#signup-email").val();
 
-      const send_param = { name, password, email };
+    const send_param = { name, password, email };
 
-      $.post("/signup", send_param, returnData => {
-        alert(returnData.message);
-        $("#signup-name").val("");
-        $("#signup-email").val("");
-        $("#signup-password").val("");
-      });
+    $.post("/signup", send_param, returnData => {
+      alert(returnData.message);
+      $("#signup-name").val("");
+      $("#signup-email").val("");
+      $("#signup-password").val("");
     });
   });
 }
@@ -108,15 +112,6 @@ function renderWrite() {
     </table>
   </div>
 `;
-    $(document).on("click", "#board-write_btn", () => {
-      const title = $("#board-write-title").val();
-      const content = $("#board-write-content").val();
-
-      const send_param = { title, content };
-      $.post("/board", send_param, returnData => {
-        alert(returnData.message);
-      });
-    });
 
     $(".board-table").hide();
     $("#write-btn").hide();
@@ -142,5 +137,18 @@ function renderLunch() {
   });
   $(".close").click(() => {
     $("#modal").hide();
+  });
+}
+
+function createPost() {
+  $(document).on("click", "#board-write_btn", () => {
+    const title = $("#board-write-title").val();
+    const content = $("#board-write-content").val();
+
+    alert(title + content);
+    // const send_param = { title, content };
+    // $.post("/board", send_param, returnData => {
+    //   alert(returnData.message);
+    // });
   });
 }
