@@ -145,10 +145,9 @@ function createPost() {
     const title = $("#board-write-title").val();
     const content = $("#board-write-content").val();
 
-    alert(title + content);
-    // const send_param = { title, content };
-    // $.post("/board", send_param, returnData => {
-    //   alert(returnData.message);
-    // });
+    const send_param = { title, content };
+    $.post("/write", send_param, returnData => {
+      alert(returnData.message);
+    });
   });
 }
