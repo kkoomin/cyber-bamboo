@@ -34,7 +34,7 @@ function renderSignUp() {
 
       const send_param = { name, password, email };
 
-      $.post("/signup", send_param, returnData => {
+      $.post("/signup", send_param, (returnData) => {
         alert(returnData.message);
         $("#signup-name").val("");
         $("#signup-email").val("");
@@ -70,7 +70,7 @@ function renderLogin() {
 
       const send_param = { email, password };
 
-      $.post("/login", send_param, returnData => {
+      $.post("/login", send_param, (returnData) => {
         alert(returnData.message);
         if (returnData.status != "fail") $(location).attr("href", "/home");
       });
@@ -113,7 +113,7 @@ function renderWrite() {
       const content = $("#board-write-content").val();
 
       const send_param = { title, content };
-      $.post("/board", send_param, returnData => {
+      $.post("/board", send_param, (returnData) => {
         alert(returnData.message);
       });
     });
