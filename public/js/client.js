@@ -117,7 +117,7 @@ function renderWrite() {
     $("#write-btn").hide();
 
     $(".buttons").append(`
-      <button class="main-button-small" id="board-btn">게시판</button>
+      <button class="main-button-small" id="board-watch-btn">게시판</button>
     `);
 
     $(document).on("click", "#board-btn", () => {
@@ -146,8 +146,12 @@ function createPost() {
     const content = $("#board-write-content").val();
 
     const send_param = { title, content };
-    $.post("/write", send_param, returnData => {
+    $.post("/write", send_param, (returnData) => {
       alert(returnData.message);
     });
   });
+}
+
+function renderBoard() {
+  $(document).on("click", "#board-write-btn", () => {});
 }

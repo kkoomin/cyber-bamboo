@@ -1,5 +1,5 @@
 <div class="board-container centered">
-  <table class="board-table" border="1">
+  <!-- <table class="board-table" border="1">
     <tbody>
       <tr>
         <td><%#= ID %></td>
@@ -18,5 +18,31 @@
         <td>5</td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
+  <table class="board-table" style="margin:20px,20px;" border="1" width="750" align="center">
+    <tr>
+      <th>no</th>
+      <th>글 번호</th>
+      <th>글 제목</th>
+      <th>작성자</th>
+      <th>조회수</th>
+      <th>작성날짜 및 시간</th>
+    </tr>
+    <%    
+    for(let i=0; i<result.length;i++){ 
+    %>
+
+    <tr class=<%= tr_color[(i%2)] %>> 
+      <td><%= i %></td>
+      <td><%= result[i].bo_no %></td>
+      <td><%= result[i].title %></td>
+      <td><%= result[i].author %></td>
+      <td><%= result[i].views %></td>
+      <td><%= result[i].createdAt %></td>
+    </tr>
+    <% 
+    }
+    %>
+
+</table> 
 </div>
