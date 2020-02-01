@@ -259,6 +259,9 @@ button:focus {
   border: 1px solid black;
   height: 20px;
 }
+.post-header {
+  background-color: var(--light-green);
+}
 
 /* write */
 .write-table {

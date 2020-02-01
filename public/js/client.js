@@ -9,6 +9,7 @@ $(document).ready(function() {
   boardPagination();
   logout();
   renderPost();
+  renderBoard();
 });
 
 function renderSignUp() {
@@ -118,7 +119,6 @@ function renderWrite() {
     </table>
   </div>
 `;
-
     $(".board-table").hide();
     $("#write-btn").hide();
 
@@ -126,11 +126,13 @@ function renderWrite() {
       <button class="main-button-small" id="board-watch-btn">게시판</button>
     `);
 
-    $(document).on("click", "#board-watch-btn", () => {
-      location.href = "/home";
-    });
-
     $(".board-container").prepend(writeForm);
+  });
+}
+
+function renderBoard() {
+  $(document).on("click", "#board-watch-btn", () => {
+    location.href = "/home";
   });
 }
 
@@ -198,6 +200,26 @@ function logout() {
 
 function renderPost() {
   $(".board-body-title").click(e => {
-    console.log(e.target.innerText);
+    const send_param = { id: e.target.previousElementSibling.innerText };
+    $.post("/post", send_param, returnData => {
+      const postData = returnData.result[0];
+      console.log(postData);
+      let postForm = `
+      <div class="post-container centered">
+       <div class="post">
+          <div class="post-header"></div>
+          <div class="post-title">${postData.title}</div>
+          <div class="post-info">${postData.author}</div>
+          <div class="post-content">${postData.content}</div>
+        </div>
+      </div>
+      `;
+      $(".board-container").hide();
+      $("main").prepend(postForm);
+      $("#write-btn").hide();
+      $(".buttons").append(`
+      <button class="main-button-small" id="board-watch-btn">게시판</button>
+      `);
+    });
   });
 }
