@@ -16,9 +16,9 @@ function renderSignUp() {
     <div class="main-signup">
         <div class="main-signup-title">회원가입</div>
         <form class="main-signup-form">
-        <input type="text" id="signup-email" name="signup-email" placeholder="email"><br>       
-        <input type="password" id="signup-password" name="signup-password" placeholder="password"><br>   
-        <input type="text" id="signup-name" name="signup-name" placeholder="name"><br>   
+        <input type="text" id="signup-email" name="signup-email" placeholder="너의 이메일"><br>       
+        <input type="password" id="signup-password" name="signup-password" placeholder="너의 비밀번호"><br>   
+        <input type="text" id="signup-name" name="signup-name" placeholder="너의 닉네임"><br>   
         </form>
         <button id="signup_btn" class="main-button-big">가입하기</button>
     </div>
@@ -34,7 +34,7 @@ function renderSignUp() {
 
       const send_param = { name, password, email };
 
-      $.post("/signup", send_param, (returnData) => {
+      $.post("/signup", send_param, returnData => {
         alert(returnData.message);
         $("#signup-name").val("");
         $("#signup-email").val("");
@@ -55,8 +55,8 @@ function renderLogin() {
     <div class="main-login">
       <div class="main-login-title">로그인</div>
       <form class="main-login-form">
-        <input id="login-email" type="text" placeholder="email"><br>
-        <input id="login-password" type="password" placeholder="password"><br>
+        <input id="login-email" type="text" placeholder="이메일을 입력하삼"><br>
+        <input id="login-password" type="password" placeholder="보안을 소중히"><br>
       </form>
       <button id="login_btn" class="main-button-big">로그인하기</button>
     </div>`;
@@ -70,7 +70,7 @@ function renderLogin() {
 
       const send_param = { email, password };
 
-      $.post("/login", send_param, (returnData) => {
+      $.post("/login", send_param, returnData => {
         alert(returnData.message);
         if (returnData.status != "fail") $(location).attr("href", "/home");
       });
@@ -108,16 +108,15 @@ function renderWrite() {
     </table>
   </div>
 `;
-    $(document).on('click','#board-write_btn',()=>{
-      const title=$('#board-write-title').val();
-      const content=$('#board-write-content').val();
+    $(document).on("click", "#board-write_btn", () => {
+      const title = $("#board-write-title").val();
+      const content = $("#board-write-content").val();
 
-      const send_param={title,content};
-      $.post('/board',send_param,(returnData)=>{
+      const send_param = { title, content };
+      $.post("/board", send_param, returnData => {
         alert(returnData.message);
       });
     });
-
 
     $(".board-table").hide();
     $("#write-btn").hide();

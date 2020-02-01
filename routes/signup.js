@@ -12,7 +12,6 @@ router.post("/", (req, res) => {
   var sql = `INSERT INTO users (name,email,password) VALUES ('${name}','${email}','${password}')`;
 
   con.query(sql, function(err, result) {
-    if (err) throw err;
     if (err || !name || !email || !password) {
       console.log("Insert Fail⛔");
       res.json({ message: `뭔가 잘못됐어요 다시 시도해주세요❗` });
