@@ -89,6 +89,7 @@ button:focus {
   border: 2px solid var(--bamboo-green);
   border-radius: 20px;
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 .main-button-big:hover {
@@ -98,8 +99,7 @@ button:focus {
 }
 
 .main-button-small {
-  /* font-family: "SSM", sans-serif; */
-  /* color: white; */
+  cursor: pointer;
   display: inline-block;
   text-align: center;
   width: 100px;

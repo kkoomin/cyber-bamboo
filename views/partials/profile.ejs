@@ -31,11 +31,9 @@
             <% result.forEach(post => {
                 if(post.author == user.name) { %>
           <tr>
-
             <td><%= post.title %></td>
             <td><%= post.content %></td>
             <td><%= post.createdAt %></td>
-     
           </tr>
           <% }
         }) %>

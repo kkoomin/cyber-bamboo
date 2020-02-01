@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  goHome();
   renderSignUp();
   renderWrite();
   renderLunch();
@@ -13,6 +14,12 @@ $(document).ready(function() {
   renderBoard();
   profile();
 });
+
+function goHome() {
+  $(".header-title").click(() => {
+    location.href = "/home";
+  });
+}
 
 function renderSignUp() {
   $("#main-signup").click(() => {
@@ -46,7 +53,7 @@ function createUser() {
 
     const send_param = { name, password, email };
 
-    $.post("/signup", send_param, (returnData) => {
+    $.post("/signup", send_param, returnData => {
       alert(returnData.message);
       $("#signup-name").val("");
       $("#signup-email").val("");
@@ -84,7 +91,7 @@ function login() {
 
     const send_param = { email, password };
 
-    $.post("/login", send_param, (returnData) => {
+    $.post("/login", send_param, returnData => {
       alert(returnData.message);
       if (returnData.status != "fail") $(location).attr("href", "/home");
     });
@@ -123,10 +130,7 @@ function renderWrite() {
 `;
     $(".board-table").hide();
     $("#write-btn").hide();
-
-    $(".buttons").append(`
-      <button class="main-button-small" id="board-watch-btn">게시판</button>
-    `);
+    $("#board-watch-btn").show();
 
     $(".board-container").prepend(writeForm);
   });
@@ -153,7 +157,7 @@ function createPost() {
     const content = $("#board-write-content").val();
 
     const send_param = { title, content };
-    $.post("/write", send_param, (returnData) => {
+    $.post("/write", send_param, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
@@ -193,19 +197,18 @@ function boardPagination() {
 
 function profile() {
   $("#header-profile-btn").click(() => {
+    $(".post-container").hide();
     $(".board-container").hide();
     $(".profile-container").show();
 
     $("#write-btn").hide();
-    $(".buttons").append(`
-    <button class="main-button-small" id="board-watch-btn">게시판</button>
-    `);
+    $("#board-watch-btn").show();
   });
 }
 
 function logout() {
   $("#header-logout-btn").click(() => {
-    $.post("/logout", (returnData) => {
+    $.post("/logout", returnData => {
       alert(returnData.message);
       location.href = "/";
     });
@@ -213,9 +216,9 @@ function logout() {
 }
 
 function renderPost() {
-  $(".board-body-title").click((e) => {
+  $(".board-body-title").click(e => {
     const send_param = { id: e.target.previousElementSibling.innerText };
-    $.post("/post", send_param, (returnData) => {
+    $.post("/post", send_param, returnData => {
       const postData = returnData.result[0];
 
       let postForm = `
@@ -230,18 +233,17 @@ function renderPost() {
       </div>
       `;
       $(".board-container").hide();
+
       $("main").prepend(postForm);
 
       $("#write-btn").hide();
-      $(".buttons").append(`
-      <button class="main-button-small" id="board-watch-btn">게시판</button>
-      `);
+      $("#board-watch-btn").show();
     });
   });
 }
 
 function renderDelete() {
-  $(document).on("click", "#post-delete-btn", (e) => {
+  $(document).on("click", "#post-delete-btn", e => {
     console.log(e);
     // location.href = "/home";
   });
