@@ -45,6 +45,10 @@ button:focus {
   text-align: center;
 }
 
+.active {
+  color: var(--main-green);
+}
+
 /* button */
 
 .main-button-big {
@@ -192,6 +196,23 @@ button:focus {
   border-color: black;
   width: 80%;
   margin: 0 10%;
+}
+
+.board-table thead {
+  background-color: var(--light-green);
+}
+
+#board-page-nav {
+  margin-top: 0.5rem;
+}
+#board-page-nav a {
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#board-page-nav a:hover {
+  color: red;
 }
 
 /* write */

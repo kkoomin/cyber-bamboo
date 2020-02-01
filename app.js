@@ -6,6 +6,7 @@ const indexRouter = require("./routes/index");
 const signupRouter = require("./routes/signup");
 const homeRouter = require("./routes/home");
 const loginRouter = require("./routes/login");
+const logoutRouter = require("./routes/logout");
 const boardRouter = require("./routes/board");
 const writeRouter = require("./routes/write");
 
@@ -32,6 +33,7 @@ app.use(
 app.use("/write", writeRouter);
 app.use("/board", boardRouter);
 app.use("/login", loginRouter);
+app.use("/logout", logoutRouter);
 app.use("/signup", signupRouter);
 app.use("/", indexRouter);
 app.use("/home", homeRouter);
