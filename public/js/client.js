@@ -209,7 +209,7 @@ function renderPost() {
        <div class="post">
           <div class="post-header"></div>
           <div class="post-title">${postData.title}</div>
-          <div class="post-info">${postData.author}</div>
+          <div class="post-info">${postData.author}, ${postData.createdAt}</div>
           <div class="post-content">${postData.content}</div>
         </div>
       </div>
