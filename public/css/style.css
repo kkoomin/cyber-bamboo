@@ -71,6 +71,13 @@ button:focus {
     border-bottom: none; */
 }
 
+.table-centered {
+  border: 1px;
+  border-color: black;
+  width: 80%;
+  margin: 0 10%;
+}
+
 /* button */
 .main-button-big {
   display: block;
@@ -213,13 +220,6 @@ button:focus {
   width: 100%;
 }
 
-.board-table {
-  border: 1px;
-  border-color: black;
-  width: 80%;
-  margin: 0 10%;
-}
-
 .board-table thead {
   background-color: var(--light-green);
 }
@@ -328,4 +328,12 @@ button:focus {
 /* lunch */
 .lunch-image {
   width: auto;
+}
+
+/* profile */
+.profile-container {
+  display: none;
+}
+.profile-title {
+  color: var(--bamboo-green);
 }

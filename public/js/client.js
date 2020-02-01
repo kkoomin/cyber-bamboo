@@ -10,6 +10,7 @@ $(document).ready(function() {
   logout();
   renderPost();
   renderBoard();
+  profile();
 });
 
 function renderSignUp() {
@@ -44,7 +45,7 @@ function createUser() {
 
     const send_param = { name, password, email };
 
-    $.post("/signup", send_param, (returnData) => {
+    $.post("/signup", send_param, returnData => {
       alert(returnData.message);
       $("#signup-name").val("");
       $("#signup-email").val("");
@@ -82,7 +83,7 @@ function login() {
 
     const send_param = { email, password };
 
-    $.post("/login", send_param, (returnData) => {
+    $.post("/login", send_param, returnData => {
       alert(returnData.message);
       if (returnData.status != "fail") $(location).attr("href", "/home");
     });
@@ -151,7 +152,7 @@ function createPost() {
     const content = $("#board-write-content").val();
 
     const send_param = { title, content };
-    $.post("/write", send_param, (returnData) => {
+    $.post("/write", send_param, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
@@ -190,12 +191,20 @@ function boardPagination() {
 }
 
 function profile() {
-  $("#header-profile-btn").click(() => {});
+  $("#header-profile-btn").click(() => {
+    $(".board-container").hide();
+    $(".profile-container").show();
+
+    $("#write-btn").hide();
+    $(".buttons").append(`
+    <button class="main-button-small" id="board-watch-btn">게시판</button>
+    `);
+  });
 }
 
 function logout() {
   $("#header-logout-btn").click(() => {
-    $.post("/logout", (returnData) => {
+    $.post("/logout", returnData => {
       alert(returnData.message);
       location.href = "/";
     });
@@ -203,9 +212,9 @@ function logout() {
 }
 
 function renderPost() {
-  $(".board-body-title").click((e) => {
+  $(".board-body-title").click(e => {
     const send_param = { id: e.target.previousElementSibling.innerText };
-    $.post("/post", send_param, (returnData) => {
+    $.post("/post", send_param, returnData => {
       const postData = returnData.result[0];
       console.log(postData);
       let postForm = `
@@ -220,6 +229,7 @@ function renderPost() {
       `;
       $(".board-container").hide();
       $("main").prepend(postForm);
+
       $("#write-btn").hide();
       $(".buttons").append(`
       <button class="main-button-small" id="board-watch-btn">게시판</button>

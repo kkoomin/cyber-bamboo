@@ -1,0 +1,45 @@
+<div class="profile-container centered">
+  <div class="user-info">
+    <h1 class="profile-title">회원정보</h1>
+    <table class="profile-table table-centered" border="1">
+        <thead>
+          <tr>
+            <td id="profile-name">닉네임</td id="id">
+            <td id="profile-email">Email</td>
+            <td id="profile-password">Password</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= user.name %></td>
+            <td ><%= user.email %></td>
+            <td><%= user.password %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h1 class="profile-title">내가 쓴 글</h1>
+      <table class="profile-posts-table table-centered" border="1">
+        <thead>
+          <tr>
+            <td id="profile-posts-title">제목</td>
+            <td id="profile-posts-content">내용</td>
+            <td id="profile-posts-createdAt">작성일</td>
+          </tr>
+        </thead>
+        <tbody>
+            <% result.forEach(post => {
+                if(post.author == user.name) { %>
+          <tr>
+
+            <td><%= post.title %></td>
+            <td><%= post.content %></td>
+            <td><%= post.createdAt %></td>
+     
+          </tr>
+          <% }
+        }) %>
+        </tbody>
+      </table>
+  </div>
+</div>
