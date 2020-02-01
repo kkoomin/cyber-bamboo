@@ -64,6 +64,13 @@ button:focus {
   }
 }
 
+.no-border {
+  border: none;
+  /* border-right: none;
+    border-left: none;
+    border-bottom: none; */
+}
+
 /* button */
 .main-button-big {
   display: block;
@@ -173,8 +180,6 @@ button:focus {
 
 .main-signup,
 .main-login {
-  /* box-shadow: 3px 3px 3px grey; */
-  /* border: 1px solid var(--beige); */
   width: 40%;
   height: auto;
   margin: auto;
@@ -235,6 +240,23 @@ button:focus {
   width: 50%;
 }
 
+/* post */
+.post-container {
+  margin: auto;
+  width: 100%;
+}
+.post {
+  width: 80%;
+  margin: 0 10%;
+}
+
+.post-title,
+.post-info,
+.post-content {
+  border: 1px solid black;
+  height: 20px;
+}
+
 /* write */
 .write-table {
   border: 1px;
@@ -261,13 +283,6 @@ button:focus {
 
 .write-table-btn {
   float: right;
-}
-
-.no-border {
-  border: none;
-  /* border-right: none;
-  border-left: none;
-  border-bottom: none; */
 }
 
 /* modal */
