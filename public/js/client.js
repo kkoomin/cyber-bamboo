@@ -7,6 +7,7 @@ $(document).ready(function() {
   createUser();
   createPost();
   boardPagination();
+  logout();
 });
 
 function renderSignUp() {
@@ -17,7 +18,7 @@ function renderSignUp() {
     }
 
     let signupForm = `
-    <div class="main-signup">
+    <div class="main-signup slideInDown">
         <div class="main-signup-title">회원가입</div>
         <form class="main-signup-form">
         <input type="text" id="signup-email" name="signup-email" placeholder="너의 이메일"><br>       
@@ -41,7 +42,7 @@ function createUser() {
 
     const send_param = { name, password, email };
 
-    $.post("/signup", send_param, (returnData) => {
+    $.post("/signup", send_param, returnData => {
       alert(returnData.message);
       $("#signup-name").val("");
       $("#signup-email").val("");
@@ -58,7 +59,7 @@ function renderLogin() {
     }
 
     let loginForm = `
-    <div class="main-login">
+    <div class="main-login slideInDown">
       <div class="main-login-title">로그인</div>
       <form class="main-login-form">
         <input id="login-email" type="text" placeholder="이메일을 입력하삼"><br>
@@ -79,7 +80,7 @@ function getLogin() {
 
     const send_param = { email, password };
 
-    $.post("/login", send_param, (returnData) => {
+    $.post("/login", send_param, returnData => {
       alert(returnData.message);
       if (returnData.status != "fail") $(location).attr("href", "/home");
     });
@@ -147,7 +148,7 @@ function createPost() {
     const content = $("#board-write-content").val();
 
     const send_param = { title, content };
-    $.post("/write", send_param, (returnData) => {
+    $.post("/write", send_param, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
@@ -182,6 +183,14 @@ function boardPagination() {
       .hide()
       .slice(startItem, endItem)
       .css("display", "table-row");
-    // .animate({ opacity: 1 }, 300);
+  });
+}
+
+function logout() {
+  $("#header-logout-btn").click(() => {
+    $.post("/logout", returnData => {
+      alert(returnData.message);
+      location.href = "/";
+    });
   });
 }

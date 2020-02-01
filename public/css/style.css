@@ -48,12 +48,24 @@ button:focus {
 .active {
   color: var(--main-green);
 }
+.slideInDown {
+  animation: animate-slideInDown linear 0.4s;
+  animation-iteration-count: 1;
+}
+
+@keyframes animate-slideInDown {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
+}
 
 /* button */
-
 .main-button-big {
-  /* font-family: "SSM", sans-serif;
-    font-weight: normal; */
   display: block;
   text-align: center;
   width: 200px;
@@ -125,6 +137,11 @@ button:focus {
 .header-nav li:hover {
   color: var(--main-green);
   cursor: pointer;
+}
+
+/* footer */
+.footer {
+  position: sticky;
 }
 
 /* main */
@@ -213,6 +230,9 @@ button:focus {
 
 #board-page-nav a:hover {
   color: red;
+}
+#board-title {
+  width: 50%;
 }
 
 /* write */
