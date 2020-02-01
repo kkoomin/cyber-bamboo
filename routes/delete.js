@@ -8,6 +8,8 @@ router.post("", (req, res) => {
     con.query(sql, (err, result) => {
       res.json({ message: "삭제되었습니다!" });
     });
+  } else {
+    res.json({ message: "니가 쓴 글이 아니므니다😒" });
   }
 });
 
