@@ -8,6 +8,7 @@ const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
 const writeRouter = require("./routes/write");
 const postRouter = require("./routes/post");
+const deleteRouter = require("./routes/delete");
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(
 );
 
 // Router
+app.use("/delete", deleteRouter);
 app.use("/write", writeRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);

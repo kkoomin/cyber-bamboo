@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  goHome();
   renderSignUp();
   renderWrite();
   renderLunch();
@@ -13,6 +14,12 @@ $(document).ready(function() {
   renderBoard();
   profile();
 });
+
+function goHome() {
+  $(".header-title").click(() => {
+    location.href = "/home";
+  });
+}
 
 function renderSignUp() {
   $("#main-signup").click(() => {
@@ -94,7 +101,7 @@ function login() {
 function renderWrite() {
   $("#write-btn").click(() => {
     let writeForm = `
-    <div class="write-container slideInDown">
+    <div class="write-container speedIn">
     <input type="hidden" id="authorName" value="author" />
     <table class="write-table" border="1">
       <tr>
@@ -123,10 +130,7 @@ function renderWrite() {
 `;
     $(".board-table").hide();
     $("#write-btn").hide();
-
-    $(".buttons").append(`
-      <button class="main-button-small" id="board-watch-btn">게시판</button>
-    `);
+    $("#board-watch-btn").show();
 
     $(".board-container").prepend(writeForm);
   });
@@ -193,13 +197,12 @@ function boardPagination() {
 
 function profile() {
   $("#header-profile-btn").click(() => {
+    $(".post-container").hide();
     $(".board-container").hide();
     $(".profile-container").show();
 
     $("#write-btn").hide();
-    $(".buttons").append(`
-    <button class="main-button-small" id="board-watch-btn">게시판</button>
-    `);
+    $("#board-watch-btn").show();
   });
 }
 
@@ -221,28 +224,31 @@ function renderPost() {
       let postForm = `
       <div class="post-container centered">
        <div class="post">
-          <div class="post-header"></div>
+          <div class="post-header">${postData.id}</div>
           <div class="post-title">${postData.title}</div>
-          <div class="post-info">${postData.author}</div>
+          <div class="post-info"><span id="post-author">${postData.author}</span></div>
           <div class="post-content">${postData.content}</div>
           <button class="main-button-small" id="post-delete-btn">삭제</button>
         </div>
       </div>
       `;
       $(".board-container").hide();
+
       $("main").prepend(postForm);
 
       $("#write-btn").hide();
-      $(".buttons").append(`
-      <button class="main-button-small" id="board-watch-btn">게시판</button>
-      `);
+      $("#board-watch-btn").show();
     });
   });
 }
 
 function renderDelete() {
   $(document).on("click", "#post-delete-btn", (e) => {
-    console.log(e);
-    // location.href = "/home";
+    const author = $("#post-author").text();
+    const id = $(".post-header").text();
+    $.post("delete", { author, id }, (returnData) => {
+      alert(returnData.message);
+      location.href = "/home";
+    });
   });
 }
