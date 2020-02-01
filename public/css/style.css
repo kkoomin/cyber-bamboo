@@ -3,7 +3,6 @@
   --main-green: #2c6705;
   --bamboo-green: #6e9a42;
   --light-green: #aec957;
-  --beige: #e2dbac;
   --shadow: grey;
   --background: #efefef;
 }
@@ -61,6 +60,28 @@ button:focus {
   100% {
     opacity: 1;
     transform: translate(0px, 0px);
+  }
+}
+.speedIn {
+  animation: animate-speedIn linear 0.6s;
+}
+@keyframes animate-speedIn {
+  from {
+    transform: translate3d(100%, 0, 0) skewX(-30deg);
+    opacity: 0;
+  }
+
+  60% {
+    transform: skewX(20deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: skewX(-5deg);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
   }
 }
 
@@ -199,7 +220,7 @@ button:focus {
 
 .main-signup-form input,
 .main-login-form input {
-  border: 1px solid grey;
+  border: 1px solid var(--shadow);
   width: 80%;
   height: 30px;
   margin: 0.2rem auto;
@@ -312,7 +333,7 @@ button:focus {
 }
 
 .close {
-  color: grey;
+  color: var(--shadow);
   float: left;
   font-size: 30px;
   font-weight: bold;

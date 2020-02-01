@@ -101,7 +101,7 @@ function login() {
 function renderWrite() {
   $("#write-btn").click(() => {
     let writeForm = `
-    <div class="write-container slideInDown">
+    <div class="write-container speedIn">
     <input type="hidden" id="authorName" value="author" />
     <table class="write-table" border="1">
       <tr>
