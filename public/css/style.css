@@ -62,6 +62,7 @@ button:focus {
     transform: translate(0px, 0px);
   }
 }
+/* Test animation */
 .speedIn {
   animation: animate-speedIn linear 0.6s;
 }
@@ -84,7 +85,7 @@ button:focus {
     -webkit-transform: translate3d(0, 0, 0);
   }
 }
-
+/*  */
 .no-border {
   border: none;
   /* border-right: none;
