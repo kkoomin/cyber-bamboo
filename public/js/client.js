@@ -231,8 +231,8 @@ function renderPost() {
           <div class="post-title">${postData.title}</div>
           <div class="post-info"><span id="post-author">${postData.author}</span></div>
           <div class="post-content">${postData.content}</div>
-          <button class="main-button-small" id="post-like-btn" data-count="${postData.like}">좋아요</button>
-          <button class="main-button-small" id="post-delete-btn">삭제</button>
+          <button class="main-button-small button-like" id="post-like-btn" data-count="${postData.like}">좋아요</button>
+          <button class="main-button-small button-delete" id="post-delete-btn">삭제</button>
         </div>
       </div>
       `;

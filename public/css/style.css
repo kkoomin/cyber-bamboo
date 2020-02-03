@@ -150,6 +150,26 @@ h1 {
   box-shadow: 5px 5px 5px var(--shadow);
 }
 
+.button-like {
+  width: 60px;
+  border: 2px solid var(--light-green);
+}
+.button-like:hover {
+  background-color: var(--light-green);
+  color: white;
+  box-shadow: 5px 5px 5px var(--shadow);
+}
+
+.button-delete {
+  width: 60px;
+  border: 2px solid red;
+}
+.button-delete:hover {
+  background-color: red;
+  color: white;
+  box-shadow: 5px 5px 5px var(--shadow);
+}
+
 /* 
  * Specific 
  */
@@ -282,9 +302,12 @@ h1 {
 /* post */
 .post-container {
   margin: auto;
-  width: 80%;
+  width: 70%;
 }
-.post-data div {
+.post-title,
+.post-info,
+.post-header,
+.post-content {
   margin: auto;
   /* vertically align */
   height: 30px;
@@ -299,13 +322,15 @@ h1 {
 }
 
 .post-title,
-.post-info,
-.post-content {
+.post-info {
   border: 1px solid black;
-  height: 20px;
 }
 .post-header {
   background-color: var(--light-green);
+}
+.post-content {
+  border: 1px solid black;
+  height: 10rem;
 }
 
 /* write */
@@ -381,4 +406,11 @@ h1 {
 }
 .profile-title {
   color: var(--bamboo-green);
+}
+
+/* buttons */
+.buttons {
+  width: 80%;
+  margin: auto 10%;
+  border-top: 1px solid var(--bamboo-green);
 }
