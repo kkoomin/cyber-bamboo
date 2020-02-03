@@ -54,7 +54,7 @@ function createUser() {
 
     const send_param = { name, password, email };
 
-    $.post("/signup", send_param, returnData => {
+    $.post("/users/signup", send_param, returnData => {
       alert(returnData.message);
       $("#signup-name").val("");
       $("#signup-email").val("");
@@ -92,7 +92,7 @@ function login() {
 
     const send_param = { email, password };
 
-    $.post("/login", send_param, returnData => {
+    $.post("/users/login", send_param, returnData => {
       alert(returnData.message);
       if (returnData.status != "fail") $(location).attr("href", "/home");
     });
@@ -160,7 +160,7 @@ function createPost() {
     const content = $("#board-write-content").val();
 
     const send_param = { title, content };
-    $.post("/write", send_param, returnData => {
+    $.post("/posts/createPost", send_param, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
@@ -211,7 +211,7 @@ function profile() {
 
 function logout() {
   $("#header-logout-btn").click(() => {
-    $.post("/logout", returnData => {
+    $.post("/users/logout", returnData => {
       alert(returnData.message);
       location.href = "/";
     });
@@ -222,7 +222,7 @@ function renderPost() {
   $(".board-body-title").click(e => {
     const send_param = { id: $(e.target.parentNode).attr("data-id") };
 
-    $.post("/post", send_param, returnData => {
+    $.post("/posts/getPosts", send_param, returnData => {
       const postData = returnData.result[0];
       let postForm = `
       <div class="post-container centered">
@@ -242,7 +242,7 @@ function renderPost() {
 
       $("#write-btn").hide();
       $("#board-watch-btn").show();
-      $.post("/updateViews", { id: postData.id, views: postData.views });
+      $.post("/posts/updateViews", { id: postData.id, views: postData.views });
     });
   });
 }
@@ -253,7 +253,7 @@ function incresePostLike() {
       id: $(e.target.parentNode).attr("data-id"),
       likes: $("#post-like-btn").attr("data-count")
     };
-    $.post("updateLikes", send_param, returnData => {
+    $.post("/posts/updateLikes", send_param, returnData => {
       alert(returnData.message);
     });
   });
@@ -263,7 +263,7 @@ function getDelete() {
   $(document).on("click", "#post-delete-btn", () => {
     const author = $("#post-author").text();
     const id = $(".post-data").attr("data-id");
-    $.post("delete", { author, id }, returnData => {
+    $.post("/posts/deletePost", { author, id }, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });

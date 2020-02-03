@@ -9,4 +9,6 @@ const con = mysql.createConnection({
   dateStrings: "date"
 });
 
+console.log("Bamboo_DB_connected!!!");
+
 module.exports = con;
