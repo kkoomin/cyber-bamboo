@@ -274,6 +274,7 @@ h1 {
 .board-container {
   margin: auto;
   width: 100%;
+  margin-top: 4rem;
 }
 
 .board-table thead {
