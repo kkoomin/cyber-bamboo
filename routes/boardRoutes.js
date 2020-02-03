@@ -53,7 +53,7 @@ router.post("/updateViews", (req, res) => {
   );
 });
 
-router.post("/", (req, res) => {
+router.post("/updateLikes", (req, res) => {
   const updatedLikes = req.body.likes * 1 + 1;
 
   con.query(
