@@ -33,5 +33,5 @@ app.use("/users", userRouter);
 app.use("/posts", boardRouter);
 
 app.listen(3000, () => {
-  console.log("Launch Bamboo >.<");
+  console.log("Launch Bamboo Sever...");
 });
