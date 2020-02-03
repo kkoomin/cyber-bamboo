@@ -6,10 +6,10 @@ router.post("/", (req, res) => {
   const updatedLikes = req.body.likes * 1 + 1;
 
   con.query(
-    `UPDATE board SET likes=${updatedLikes} WHERE id=${req.body.id}`,
+    `UPDATE board SET \`like\`=${updatedLikes} WHERE id=${req.body.id}`,
     (err, result) => {
       if (err) console.log(err);
-      res.send();
+      res.json({ message: "👍" });
     }
   );
 });

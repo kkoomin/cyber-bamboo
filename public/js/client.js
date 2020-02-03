@@ -224,7 +224,6 @@ function renderPost() {
 
     $.post("/post", send_param, returnData => {
       const postData = returnData.result[0];
-
       let postForm = `
       <div class="post-container centered">
        <div class="post-data" data-id="${postData.id}">
@@ -232,7 +231,7 @@ function renderPost() {
           <div class="post-title">${postData.title}</div>
           <div class="post-info"><span id="post-author">${postData.author}</span></div>
           <div class="post-content">${postData.content}</div>
-          <button class="main-button-small" id="post-like-btn">좋아요</button>
+          <button class="main-button-small" id="post-like-btn" data-count="${postData.like}">좋아요</button>
           <button class="main-button-small" id="post-delete-btn">삭제</button>
         </div>
       </div>
@@ -249,10 +248,14 @@ function renderPost() {
 }
 
 function incresePostLike() {
-  $(document).on("click", "#post-like-btn", () => {
-    // const send_param = { id: $(e.target.parentNode).attr("data-id") };
-    // $.post("delete", send_param, returnData => {});
-    alert("추후 추가될 기능입니다. 좋아요 👍");
+  $(document).on("click", "#post-like-btn", e => {
+    const send_param = {
+      id: $(e.target.parentNode).attr("data-id"),
+      likes: $("#post-like-btn").attr("data-count")
+    };
+    $.post("updateLikes", send_param, returnData => {
+      alert(returnData.message);
+    });
   });
 }
 
