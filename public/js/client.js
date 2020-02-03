@@ -217,13 +217,14 @@ function logout() {
 
 function renderPost() {
   $(".board-body-title").click(e => {
-    const send_param = { id: e.target.previousElementSibling.innerText };
+    const send_param = { id: $(e.target.parentNode).attr("data-id") };
+
     $.post("/post", send_param, returnData => {
       const postData = returnData.result[0];
 
       let postForm = `
       <div class="post-container centered">
-       <div class="post">
+       <div class="post" data-id="<%= result[i].id %>">
           <div class="post-header">${postData.id}</div>
           <div class="post-title">${postData.title}</div>
           <div class="post-info"><span id="post-author">${postData.author}</span></div>
@@ -244,9 +245,8 @@ function renderPost() {
 
 function renderDelete() {
   $(document).on("click", "#post-delete-btn", () => {
-    const author = $("#post-author").text();
-    const id = $(".post-header").text();
-    $.post("delete", { author, id }, returnData => {
+    const id = $(".post").attr("data-id");
+    $.post("delete", { id }, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
