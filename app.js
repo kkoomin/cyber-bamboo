@@ -8,6 +8,7 @@ const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
 const writeRouter = require("./routes/write");
 const postRouter = require("./routes/post");
+const updateViewsRouter = require("./routes/updateViews");
 const deleteRouter = require("./routes/delete");
 
 const app = express();
@@ -38,6 +39,7 @@ app.use("/signup", signupRouter);
 app.use("/", indexRouter);
 app.use("/home", homeRouter);
 app.use("/post", postRouter);
+app.use("/updateViews", updateViewsRouter);
 
 app.listen(3000, () => {
   console.log("Launch Bamboo >.<");

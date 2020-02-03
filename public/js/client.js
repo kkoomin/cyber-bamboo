@@ -130,6 +130,8 @@ function renderWrite() {
 `;
     $(".board-table").hide();
     $("#write-btn").hide();
+    $("#board-page-nav").hide();
+    $(".board-container-title").hide();
     $("#board-watch-btn").show();
 
     $(".board-container").prepend(writeForm);
@@ -166,7 +168,7 @@ function createPost() {
 
 function boardPagination() {
   $(".board-table").after('<div id="board-page-nav"></div>');
-  let rowsShown = 10;
+  let rowsShown = 15;
   let rowsTotal = $(".board-table tbody tr").length;
   let numPages = rowsTotal / rowsShown;
 
@@ -239,6 +241,7 @@ function renderPost() {
 
       $("#write-btn").hide();
       $("#board-watch-btn").show();
+      $.post("/updateViews", { id: postData.id, views: postData.views });
     });
   });
 }
