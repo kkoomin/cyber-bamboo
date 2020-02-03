@@ -41,9 +41,15 @@ button:focus {
   outline: none;
 }
 
+h1 {
+  font-family: "SSM", sans-serif;
+  color: var(--main-green);
+  font-size: 30px;
+}
 /* 
  * General 
  */
+
 .centered {
   text-align: center;
 }
@@ -276,8 +282,17 @@ button:focus {
 /* post */
 .post-container {
   margin: auto;
-  width: 100%;
+  width: 80%;
 }
+.post-data div {
+  margin: auto;
+  /* vertically align */
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  /* **************** */
+}
+
 .post {
   width: 80%;
   margin: 0 10%;

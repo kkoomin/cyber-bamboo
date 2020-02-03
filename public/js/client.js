@@ -224,8 +224,8 @@ function renderPost() {
 
       let postForm = `
       <div class="post-container centered">
-       <div class="post" data-id="<%= result[i].id %>">
-          <div class="post-header">${postData.id}</div>
+       <div class="post-data" data-id="${postData.id}">
+          <div class="post-header">${e.target.previousElementSibling.innerText}</div>
           <div class="post-title">${postData.title}</div>
           <div class="post-info"><span id="post-author">${postData.author}</span></div>
           <div class="post-content">${postData.content}</div>
@@ -245,8 +245,9 @@ function renderPost() {
 
 function renderDelete() {
   $(document).on("click", "#post-delete-btn", () => {
-    const id = $(".post").attr("data-id");
-    $.post("delete", { id }, returnData => {
+    const author = $("#post-author").text();
+    const id = $(".post-data").attr("data-id");
+    $.post("delete", { author, id }, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
