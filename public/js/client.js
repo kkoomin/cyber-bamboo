@@ -17,6 +17,9 @@ $(document).ready(function() {
   getProfile();
   incresePostLike();
   postComment();
+  renderCommentArea();
+  clicktata();
+  updateProfileDB();
 });
 
 function goHome() {
@@ -57,7 +60,7 @@ function createUser() {
 
     const send_param = { name, password, email };
 
-    $.post("/users/signup", send_param, returnData => {
+    $.post("/users/signup", send_param, (returnData) => {
       alert(returnData.message);
       $("#signup-name").val("");
       $("#signup-email").val("");
@@ -149,7 +152,7 @@ function createPost() {
     const content = $("#board-write-content").val();
 
     const send_param = { title, content };
-    $.post("/posts/createPost", send_param, returnData => {
+    $.post("/posts/createPost", send_param, (returnData) => {
       alert(returnData.message);
       location.href = "/home";
     });
@@ -193,16 +196,39 @@ function getProfile() {
     $(".board-container").hide();
     $(".profile-container").show();
 
+    $("#change-info").hide();
     $("#write-btn").hide();
     $("#board-watch-btn").show();
   });
 }
 
+/* function updateProfile() {
+  $("#fix-profile-btn").click(() => {
+    let fix_profile = `변경할 닉네임:<input id="fix-name"><br>`;
+    fix_profile += `변경할 이메일:<input id="fix-email"><br>`;
+    fix_profile += `변경할 패스워드:<input type="password" id="fix-password"><br>`;
+    fix_profile += `<input id="change-profile" type="button" value="변경"><br>`;
+
+    $("#login-profile").html(fix_profile);
+  });
+  $(document).on("click", "#fix-profile", function() {
+    const fix_name = $("#fix-name").val();
+    const fix_email = $("fix-email").val();
+    const fix_password = $("fix-password").val();
+
+    const send_param = { fix_name, fix_email, fix_password };
+
+    $.post("/users/updateProfile", send_param, function(returnData) {
+      alert(returnData.message);
+    });
+  });
+} */
+
 function renderPost() {
-  $(".board-body-title").click(e => {
+  $(".board-body-title").click((e) => {
     const send_param = { id: $(e.target.parentNode).attr("data-id") };
 
-    $.post("/posts/getPosts", send_param, returnData => {
+    $.post("/posts/getPosts", send_param, (returnData) => {
       const postData = returnData.result[0];
       let postForm = `
       <div class="post-container centered">
@@ -212,24 +238,20 @@ function renderPost() {
           <div class="post-info"><span id="post-author">${postData.author}</span></div>
           <div class="post-content">${postData.content}</div>
           <button class="main-button-small button-like" id="post-like-btn" data-count="${postData.like}">👍좋아요</button>
-          <button class="main-button-small button-comment" id="post-comment-btn">📘댓글쓰기</button>
+          <button class="main-button-small button-comment" id="render-comment-btn">📘댓글쓰기</button>
           <button class="main-button-small button-delete" id="post-delete-btn">👿삭제하기</button>
           
          <div>
           
-          <form class="comment-box">
-            <div class="form-group">
+          <div class="post-comment-area">
+            <div class="comment-area>
                 <label for="comment">Comment:</label>
-                <textarea class="form-control" id="comment"></textarea>
-
-              <tr>
-                <td class="write-table-btn no-border">
-                  <button id="post-comment-btn" class="main-button-small">⭐등록</button>
-                </td>
-              </tr>
-
+                <br>
+                <textarea class="comment-content" id="comment"></textarea>
             </div>
-          </form>
+     
+                  <button id="post-comment-btn" class="main-button-small">⭐등록</button>
+       
           
          </div>
 
@@ -248,12 +270,12 @@ function renderPost() {
 }
 
 function incresePostLike() {
-  $(document).on("click", "#post-like-btn", e => {
+  $(document).on("click", "#post-like-btn", (e) => {
     const send_param = {
       id: $(e.target.parentNode).attr("data-id"),
       likes: $("#post-like-btn").attr("data-count")
     };
-    $.post("/posts/updateLikes", send_param, returnData => {
+    $.post("/posts/updateLikes", send_param, (returnData) => {
       alert(returnData.message);
     });
   });
@@ -263,22 +285,48 @@ function deletePost() {
   $(document).on("click", "#post-delete-btn", () => {
     const author = $("#post-author").text();
     const id = $(".post-data").attr("data-id");
-    $.post("/posts/deletePost", { author, id }, returnData => {
+    $.post("/posts/deletePost", { author, id }, (returnData) => {
       alert(returnData.message);
       location.href = "/home";
     });
   });
 }
 
+function renderCommentArea() {
+  $(document).on("click", "#render-comment-btn", () => {
+    $(".post-comment-area").show();
+  });
+}
 
-function postComment(){
+function postComment() {
   $(document).on("click", "#post-comment-btn", () => {
-    
-    const content = $("#comment").text();
+    const content = $("#comment").val();
+    const post_id = $(".post-data").attr("data-id");
 
-    const send_param = { content };
-    
-    $.post("/posts/postComment", send_param, returnData => {
+    const send_param = { post_id, content };
+
+    $.post("/posts/postComment", send_param, (returnData) => {
+      alert(returnData.message);
+      location.href = "/home";
+    });
+  });
+}
+
+function clicktata() {
+  $("#tatata").click(() => {
+    $("#change-info").show();
+    $("#myprofile").hide();
+  });
+}
+
+function updateProfileDB() {
+  $("#fix-profile-btn").click(() => {
+    const name = $("#change-user-name").val();
+    const email = $("#change-user-email").val();
+
+    const send_param = { name, email };
+    console.log(name + ":" + email);
+    $.post("users/updateProfile", send_param, (returnData) => {
       alert(returnData.message);
       location.href = "/home";
     });

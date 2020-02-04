@@ -1,7 +1,8 @@
 <div class="profile-container centered">
   <div class="user-info">
     <h1 class="profile-title">회원정보</h1>
-    <table class="profile-table table-centered" border="1">
+    <div id="myprofile">
+    <table id="login-profile" class="profile-table table-centered" border="1">
         <thead>
           <tr>
             <td id="profile-name">닉네임</td id="id">
@@ -11,13 +12,25 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= user.name %></td>
-            <td ><%= user.email %></td>
-            <td><%= user.password %></td>
-          </tr>
+            <td id="login-user-name"><%= user.name %></td>
+            <td id="login-user-email"><%= user.email %></td>
+            <td id="login-user-password"><%= user.password %></td>
+          </tr>          
         </tbody>
       </table>
+      <button class="main-button-small" id="tatata">✍타타타</button>
+    </div>
+    
+      <div id="change-info">
+        변경할 이름:<input id="change-user-name" placeholder="<%= user.name %>" class="update-profile"/><br>
+        변경할 이메일:<input id="change-user-email" placeholder="<%= user.email %>" class="update-profile"/><br> 
+        <button class="main-button-small" id="fix-profile-btn">✍수정하기</button>       
+      </div>
 
+    
+
+
+      
       <h1 class="profile-title">내가 쓴 글</h1>
       <table class="profile-posts-table table-centered" border="1">
         <thead>
@@ -39,5 +52,6 @@
         }) %>
         </tbody>
       </table>
-  </div>
+      
+    </div>
 </div>

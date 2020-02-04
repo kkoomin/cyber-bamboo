@@ -51,4 +51,17 @@ router.post("/logout", (req, res) => {
   });
 });
 
+router.post("/updateProfile", (req, res) => {
+  const updateUsername = req.body.name;
+  const updateUseremail = req.body.email;
+
+  con.query(
+    `UPDATE users SET name='${updateUsername}',email='${updateUseremail}' WHERE email='${req.session.email}'`,
+    (err, result) => {
+      if (err) console.log(err);
+      res.json({ message: "✍내 정보를 변경 했습니다." });
+    }
+  );
+});
+
 module.exports = router;

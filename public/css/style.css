@@ -357,6 +357,15 @@ h1 {
   border: none;
   font-size: 20px;
 }
+
+.update-profile {
+  margin: 10px; 
+  width: 50%;
+  
+  font-size: 15px;
+}
+
+
 .write-input:focus {
   outline: none;
 }
@@ -425,3 +434,12 @@ h1 {
   border-top: 1px solid var(--bamboo-green);
 }
 
+/* comment area */
+.post-comment-area {
+  display: none;
+}
+
+.comment-content {
+  width: 70%;
+  border-radius: 5px;
+}
