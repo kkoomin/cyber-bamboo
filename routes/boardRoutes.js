@@ -60,9 +60,35 @@ router.post("/updateLikes", (req, res) => {
     `UPDATE board SET \`like\`=${updatedLikes} WHERE id=${req.body.id}`,
     (err, result) => {
       if (err) console.log(err);
-      res.json({ message: "👍" });
+      res.json({ message: "👍좋아요가 추가됬습니다." });
     }
   );
 });
+
+
+
+router.post("/postComment", (req, res) => {
+  if (req.session.email) {
+    const sql = `INSERT INTO board comment VALUES '${req.body.content}'`;
+    if (req.body.content) {
+      con.query(sql, (err, result) => {
+        if (err) {
+          console.error(err);
+          res.json({ message: "댓글 등록 실패❌" });
+        } else {
+          console.log("Comment insert success!");
+          res.json({ message: "댓글 등록 성공✅" });
+        }
+      });
+    } else {
+      res.json({ message: "댓글 내용을 입력해주세요 ❌" });
+    }
+  } else {
+    res.json({ message: "로그인 먼저 하세요🐋" });
+  }
+});
+
+
+
 
 module.exports = router;

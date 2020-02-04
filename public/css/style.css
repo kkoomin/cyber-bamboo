@@ -151,7 +151,7 @@ h1 {
 }
 
 .button-like {
-  width: 60px;
+  width: 90px;
   border: 2px solid var(--light-green);
 }
 .button-like:hover {
@@ -161,7 +161,7 @@ h1 {
 }
 
 .button-delete {
-  width: 60px;
+  width: 90px;
   border: 2px solid red;
 }
 .button-delete:hover {
@@ -170,6 +170,15 @@ h1 {
   box-shadow: 5px 5px 5px var(--shadow);
 }
 
+.button-comment {
+  width: 90px;
+  border: 2px solid blue;
+}
+.button-comment:hover {
+  background-color: blue;
+  color: white;
+  box-shadow: 5px 5px 5px var(--shadow);
+}
 /* 
  * Specific 
  */
@@ -415,3 +424,4 @@ h1 {
   margin: auto 10%;
   border-top: 1px solid var(--bamboo-green);
 }
+

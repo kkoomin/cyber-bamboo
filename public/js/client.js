@@ -16,6 +16,7 @@ $(document).ready(function() {
   renderBoard();
   getProfile();
   incresePostLike();
+  postComment();
 });
 
 function goHome() {
@@ -210,8 +211,28 @@ function renderPost() {
           <div class="post-title">${postData.title}</div>
           <div class="post-info"><span id="post-author">${postData.author}</span></div>
           <div class="post-content">${postData.content}</div>
-          <button class="main-button-small button-like" id="post-like-btn" data-count="${postData.like}">좋아요</button>
-          <button class="main-button-small button-delete" id="post-delete-btn">삭제</button>
+          <button class="main-button-small button-like" id="post-like-btn" data-count="${postData.like}">👍좋아요</button>
+          <button class="main-button-small button-comment" id="post-comment-btn">📘댓글쓰기</button>
+          <button class="main-button-small button-delete" id="post-delete-btn">👿삭제하기</button>
+          
+         <div>
+          
+          <form class="comment-box">
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" id="comment"></textarea>
+
+              <tr>
+                <td class="write-table-btn no-border">
+                  <button id="post-comment-btn" class="main-button-small">⭐등록</button>
+                </td>
+              </tr>
+
+            </div>
+          </form>
+          
+         </div>
+
         </div>
       </div>
       `;
@@ -243,6 +264,21 @@ function deletePost() {
     const author = $("#post-author").text();
     const id = $(".post-data").attr("data-id");
     $.post("/posts/deletePost", { author, id }, returnData => {
+      alert(returnData.message);
+      location.href = "/home";
+    });
+  });
+}
+
+
+function postComment(){
+  $(document).on("click", "#post-comment-btn", () => {
+    
+    const content = $("#comment").text();
+
+    const send_param = { content };
+    
+    $.post("/posts/postComment", send_param, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
