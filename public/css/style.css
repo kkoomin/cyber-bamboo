@@ -221,6 +221,7 @@ h1 {
   width: 100%;
   height: 2.5rem;
   margin-bottom: 1rem;
+  z-index: -1;
 }
 
 /* main */
@@ -437,9 +438,33 @@ h1 {
 /* comment area */
 .post-comment-area {
   display: none;
+  margin-top: 3rem;
 }
 
 .comment-content {
-  width: 70%;
+  border: 1px solid var(--shadow);
+  width: 80%;
+  height: 30px;
+  margin: 0.2rem auto;
+  padding: 5px;
   border-radius: 5px;
+  font-size: 15px;
+}
+
+.comment-title span {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "SSM", sans-serif;
+  color: var(--main-green);
+}
+
+.comment {
+  width: 60%;
+  margin: 0.5rem auto;
+  border-bottom: 1px solid var(--shadow);
+}
+
+.comment-delete-btn {
+  cursor: pointer;
+  display: inline;
 }
