@@ -70,7 +70,7 @@ router.post("/updateLikes", (req, res) => {
     `UPDATE board SET \`like\`=${updatedLikes} WHERE id=${req.body.id}`,
     (err, result) => {
       if (err) console.log(err);
-      res.json({ message: "👍좋아요가 추가됬습니다." });
+      res.json({ message: "👍좋아요가 추가됐습니다." });
     }
   );
 });
