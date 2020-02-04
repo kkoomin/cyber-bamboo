@@ -70,10 +70,10 @@ router.post("/updateLikes", (req, res) => {
   const updatedLikes = req.body.likes * 1 + 1;
 
   con.query(
-    `UPDATE board SET \`like\`=${updatedLikes} WHERE id=${req.body.id}`,
+    `UPDATE board SET likes=${updatedLikes} WHERE id=${req.body.id}`,
     (err, result) => {
       if (err) console.log(err);
-      res.json({ message: "👍좋아요가 추가됐습니다." });
+      res.json({ message: "👍" });
     }
   );
 });

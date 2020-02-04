@@ -221,6 +221,7 @@ h1 {
   width: 100%;
   height: 2.5rem;
   margin-bottom: 1rem;
+  z-index: -1;
 }
 
 /* main */

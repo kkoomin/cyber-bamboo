@@ -226,7 +226,7 @@ function renderPost() {
       <button
         class="main-button-small button-like"
         id="post-like-btn"
-        data-count="${postData.like}"
+        data-count="${postData.likes}"
       >
         👍좋아요
       </button>
@@ -282,9 +282,10 @@ function renderPost() {
 function incresePostLike() {
   $(document).on("click", "#post-like-btn", e => {
     const send_param = {
-      id: $(e.target.parentNode).attr("data-id"),
+      id: $(e.target.parentNode.parentNode).attr("data-id"),
       likes: $("#post-like-btn").attr("data-count")
     };
+    // console.log(e.target.parentNode.parentNode);
     $.post("/posts/updateLikes", send_param, returnData => {
       alert(returnData.message);
     });
