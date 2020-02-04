@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.post("/createPost", (req, res) => {
   if (req.session.email) {
-    let content = con.escape(req.body.content);
-    let title = con.escape(req.body.title);
+    let content = con.escape(req.body.content.replace(/ /gi, ""));
+    let title = con.escape(req.body.title.replace(/ /gi, ""));
     const sql = `INSERT INTO board (author,title,content,views) VALUES ('${req.session.name}', ${title}, ${content}, 1)`;
     if (req.body.title && req.body.content) {
       con.query(sql, (err, result) => {
@@ -26,7 +26,10 @@ router.post("/createPost", (req, res) => {
 });
 
 router.post("/deletePost", (req, res) => {
-  if (req.session.name == req.body.author) {
+  if (
+    req.session.name == req.body.author ||
+    req.session.name == "[DM] 운영자"
+  ) {
     const sql = `DELETE FROM board WHERE author = '${req.body.author}' AND id = '${req.body.id}'`;
     con.query(sql, (err, result) => {
       res.json({ message: "삭제되었습니다!" });
@@ -76,7 +79,7 @@ router.post("/updateLikes", (req, res) => {
 });
 
 router.post("/postComment", (req, res) => {
-  let content = con.escape(req.body.content);
+  let content = con.escape(req.body.content.replace(/ /gi, ""));
   const sql = `INSERT INTO comments (post_id, content, author) VALUES (${req.body.post_id}, ${content}, '${req.session.name}')`;
 
   if (req.body.content) {

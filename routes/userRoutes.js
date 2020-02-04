@@ -3,32 +3,40 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/signup", (req, res) => {
-  const name = con.escape(req.body.name);
-  const password = con.escape(req.body.password);
-  const email = con.escape(req.body.email);
+  let name = con.escape(req.body.name.replace(/ /gi, ""));
+  let password = con.escape(req.body.password);
+  let email = con.escape(req.body.email);
 
-  var sql = `INSERT INTO users (name,email,password) VALUES (${name}, ${email}, ${password})`;
-  console.log(`${name}, ${email}, ${password}`);
+  function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email));
+  }
+  if (validateEmail(req.body.email)) {
+    let sql = `INSERT INTO users (name,email,password) VALUES (${name}, ${email}, ${password})`;
+    console.log(`${name}, ${email}, ${password}`);
 
-  con.query(sql, function(err, result) {
-    if (
-      err ||
-      !name ||
-      !email ||
-      !password ||
-      name == "" ||
-      email == "" ||
-      password == ""
-    ) {
-      console.log("Insert Fail⛔");
-      console.log(err);
-      res.json({ message: `뭔가 잘못됐어요 다시 시도해주세요❗` });
-    } else {
-      console.log("Insert Success!✅");
-      console.log(req.body);
-      res.json({ message: `회원가입이 완료되었습니다. 환영합니다~💓` });
-    }
-  });
+    con.query(sql, function(err, result) {
+      if (
+        err ||
+        !name ||
+        !email ||
+        !password ||
+        name == "" ||
+        email == "" ||
+        password == ""
+      ) {
+        console.log("Insert Fail⛔");
+        console.log(err);
+        res.json({ message: `뭔가 잘못됐어요 다시 시도해주세요❗` });
+      } else {
+        console.log("Insert Success!✅");
+        console.log(req.body);
+        res.json({ message: `회원가입이 완료되었습니다. 환영합니다~💓` });
+      }
+    });
+  } else {
+    res.json({ message: `이메일 형식을 맞춰주세요❗example@email.com` });
+  }
 });
 
 router.post("/login", (req, res) => {

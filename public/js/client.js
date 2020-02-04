@@ -38,7 +38,7 @@ function renderSignUp() {
     <div class="main-signup slideInDown">
         <div class="main-signup-title">회원가입</div>
         <form class="main-signup-form">
-        <input type="text" id="signup-email" name="signup-email" placeholder="너의 이메일"><br>       
+        <input type="email" id="signup-email" name="signup-email" placeholder="너의 이메일"><br>       
         <input type="password" id="signup-password" name="signup-password" placeholder="너의 비밀번호"><br>   
         <input type="text" id="signup-name" name="signup-name" placeholder="너의 닉네임"><br>   
         </form>
