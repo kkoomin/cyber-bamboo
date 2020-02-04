@@ -12,6 +12,7 @@ router.post("/signup", (req, res) => {
   con.query(sql, function(err, result) {
     if (err || !name || !email || !password) {
       console.log("Insert Fail⛔");
+      console.log(err);
       res.json({ message: `뭔가 잘못됐어요 다시 시도해주세요❗` });
     } else {
       console.log("Insert Success!✅");

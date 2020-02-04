@@ -1,3 +1,5 @@
+import { login, logout } from "./login.js";
+
 $(document).ready(function() {
   goHome();
   renderSignUp();
@@ -10,9 +12,9 @@ $(document).ready(function() {
   boardPagination();
   logout();
   renderPost();
-  getDelete();
+  deletePost();
   renderBoard();
-  profile();
+  getProfile();
   incresePostLike();
 });
 
@@ -82,20 +84,6 @@ function renderLogin() {
 
     $("#main-login").hide();
     $(".main-container").prepend(loginForm);
-  });
-}
-
-function login() {
-  $(document).on("click", "#login_btn", () => {
-    const email = $("#login-email").val();
-    const password = $("#login-password").val();
-
-    const send_param = { email, password };
-
-    $.post("/users/login", send_param, returnData => {
-      alert(returnData.message);
-      if (returnData.status != "fail") $(location).attr("href", "/home");
-    });
   });
 }
 
@@ -198,7 +186,7 @@ function boardPagination() {
   });
 }
 
-function profile() {
+function getProfile() {
   $("#header-profile-btn").click(() => {
     $(".post-container").hide();
     $(".board-container").hide();
@@ -206,15 +194,6 @@ function profile() {
 
     $("#write-btn").hide();
     $("#board-watch-btn").show();
-  });
-}
-
-function logout() {
-  $("#header-logout-btn").click(() => {
-    $.post("/users/logout", returnData => {
-      alert(returnData.message);
-      location.href = "/";
-    });
   });
 }
 
@@ -259,7 +238,7 @@ function incresePostLike() {
   });
 }
 
-function getDelete() {
+function deletePost() {
   $(document).on("click", "#post-delete-btn", () => {
     const author = $("#post-author").text();
     const id = $(".post-data").attr("data-id");
