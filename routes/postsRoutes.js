@@ -65,30 +65,24 @@ router.post("/updateLikes", (req, res) => {
   );
 });
 
-
-
 router.post("/postComment", (req, res) => {
-  if (req.session.email) {
-    const sql = `INSERT INTO board comment VALUES '${req.body.content}'`;
-    if (req.body.content) {
-      con.query(sql, (err, result) => {
-        if (err) {
-          console.error(err);
-          res.json({ message: "댓글 등록 실패❌" });
-        } else {
-          console.log("Comment insert success!");
-          res.json({ message: "댓글 등록 성공✅" });
-        }
-      });
-    } else {
-      res.json({ message: "댓글 내용을 입력해주세요 ❌" });
-    }
+  console.log(req.body.content);
+  const sql = `INSERT INTO comments (post_id, content, author) VALUES (${req.body.post_id}, '${req.body.content}', '${req.session.name}')`;
+
+  if (req.body.content) {
+    con.query(sql, (err, result) => {
+      console.log(result);
+      if (err) {
+        console.error(err);
+        res.json({ message: "댓글 등록 실패❌" });
+      } else {
+        console.log("Comment insert success!");
+        res.json({ message: "댓글 등록 성공✅" });
+      }
+    });
   } else {
-    res.json({ message: "로그인 먼저 하세요🐋" });
+    res.json({ message: "댓글 내용을 입력해주세요 ❌" });
   }
 });
-
-
-
 
 module.exports = router;

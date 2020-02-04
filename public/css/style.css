@@ -425,3 +425,12 @@ h1 {
   border-top: 1px solid var(--bamboo-green);
 }
 
+/* comment area */
+.post-comment-area {
+  display: none;
+}
+
+.comment-content {
+  width: 70%;
+  border-radius: 5px;
+}

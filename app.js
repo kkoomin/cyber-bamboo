@@ -5,7 +5,7 @@ const session = require("express-session");
 const indexRouter = require("./routes/indexRoutes");
 const homeRouter = require("./routes/homeRoutes");
 const userRouter = require("./routes/userRoutes");
-const boardRouter = require("./routes/boardRoutes");
+const postRouter = require("./routes/postsRoutes");
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use(
 app.use("/", indexRouter);
 app.use("/home", homeRouter);
 app.use("/users", userRouter);
-app.use("/posts", boardRouter);
+app.use("/posts", postRouter);
 
 app.listen(3000, () => {
   console.log("Launch Bamboo Sever...");

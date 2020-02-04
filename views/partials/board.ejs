@@ -15,7 +15,7 @@
       <% if(result) { for(let i=0; i < result.length; i++){ %>
 
       <tr class="board-body-data" data-id="<%= result[i].id %>">
-        <td><%= result.length-i %></td>
+        <td class="board-body-number"><%= result.length-i %></td>
         <td class="board-body-title"><%= result[i].title %></td>
         <td><%= result[i].author %></td>
         <td><%= result[i].createdAt %></td>
