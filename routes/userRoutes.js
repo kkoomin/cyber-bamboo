@@ -75,8 +75,17 @@ router.post("/updateProfile", (req, res) => {
   con.query(
     `UPDATE users SET name='${updateUsername}',email='${updateUseremail}' WHERE email='${req.session.email}'`,
     (err, result) => {
+      console.log(result);
       if (err) console.log(err);
-      res.json({ message: "✍내 정보를 변경 했습니다." });
+      // req.session.user = result[0];
+      con.query(
+        `SELECT * FROM users WHERE id='${req.session.user.id}'`,
+        (err, result) => {
+          console.log(result[0]);
+          req.session.user = result[0];
+          res.json({ user: result[0] });
+        }
+      );
     }
   );
 });

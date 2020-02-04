@@ -26,11 +26,8 @@ router.post("/createPost", (req, res) => {
 });
 
 router.post("/deletePost", (req, res) => {
-  if (
-    req.session.name == req.body.author ||
-    req.session.name == "[DM] 운영자"
-  ) {
-    const sql = `DELETE FROM board WHERE author = '${req.body.author}' AND id = '${req.body.id}'`;
+  if (req.session.name == req.body.author || req.session.name == "운영자") {
+    const sql = `DELETE FROM board WHERE id = '${req.body.id}'`;
     con.query(sql, (err, result) => {
       res.json({ message: "삭제되었습니다!" });
     });

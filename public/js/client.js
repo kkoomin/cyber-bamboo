@@ -61,7 +61,7 @@ function createUser() {
 
     const send_param = { name, password, email };
 
-    $.post("/users/signup", send_param, (returnData) => {
+    $.post("/users/signup", send_param, returnData => {
       alert(returnData.message);
       $("#signup-name").val("");
       $("#signup-email").val("");
@@ -157,7 +157,7 @@ function createPost() {
       .trim();
 
     const send_param = { title, content };
-    $.post("/posts/createPost", send_param, (returnData) => {
+    $.post("/posts/createPost", send_param, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
@@ -230,10 +230,10 @@ function getProfile() {
 } */
 
 function renderPost() {
-  $(".board-body-title").click((e) => {
+  $(".board-body-title").click(e => {
     const send_param = { id: $(e.target.parentNode).attr("data-id") };
 
-    $.post("/posts/getPosts", send_param, (returnData) => {
+    $.post("/posts/getPosts", send_param, returnData => {
       const postData = returnData.postData;
       const comments = returnData.comments;
 
@@ -284,7 +284,7 @@ function renderPost() {
       $("main").prepend(postForm);
 
       const commentsHTML = [];
-      comments.forEach((comment) => {
+      comments.forEach(comment => {
         commentsHTML.push(
           `<div class="comment" data-id="${comment.id}">
           ${comment.content} - <span id="comment-author" data-a="${comment.author}">${comment.author}</span> [${comment.createdAt}]           <span class="comment-delete-btn" data-id="${comment.id}">❌</span>
@@ -305,13 +305,13 @@ function renderPost() {
 }
 
 function incresePostLike() {
-  $(document).on("click", "#post-like-btn", (e) => {
+  $(document).on("click", "#post-like-btn", e => {
     const send_param = {
       id: $(e.target.parentNode.parentNode).attr("data-id"),
       likes: $("#post-like-btn").attr("data-count")
     };
     // console.log(e.target.parentNode.parentNode);
-    $.post("/posts/updateLikes", send_param, (returnData) => {
+    $.post("/posts/updateLikes", send_param, returnData => {
       alert(returnData.message);
     });
   });
@@ -321,7 +321,7 @@ function deletePost() {
   $(document).on("click", "#post-delete-btn", () => {
     const author = $("#post-author").text();
     const id = $(".post-data").attr("data-id");
-    $.post("/posts/deletePost", { author, id }, (returnData) => {
+    $.post("/posts/deletePost", { author, id }, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
@@ -341,7 +341,7 @@ function postComment() {
 
     const send_param = { post_id, content };
 
-    $.post("/posts/postComment", send_param, (returnData) => {
+    $.post("/posts/postComment", send_param, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
@@ -362,18 +362,24 @@ function updateProfileDB() {
 
     const send_param = { name, email };
     console.log(name + ":" + email);
-    $.post("users/updateProfile", send_param, (returnData) => {
-      alert(returnData.message);
-      location.href = "/home";
+    $.post("users/updateProfile", send_param, returnData => {
+      console.log(returnData.user.name);
+      $("#change-info").hide();
+      $("#myprofile").show();
+      $("#login-user-name").html(returnData.user.name);
+      $("#login-user-email").html(returnData.user.email);
+      // console.log(returnData.user);
+      // location.href = "/home";
     });
+    alert("✍내 정보를 변경했습니다.");
   });
 }
 
 function deleteComment() {
-  $(document).on("click", ".comment-delete-btn", (e) => {
+  $(document).on("click", ".comment-delete-btn", e => {
     const author = $("#comment-author").attr("data-a");
     const id = e.target.dataset.id;
-    $.post("/posts/deleteComment", { author, id }, (returnData) => {
+    $.post("/posts/deleteComment", { author, id }, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });
