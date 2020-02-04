@@ -36,8 +36,16 @@ router.post("/deletePost", (req, res) => {
 
 router.post("/getPosts", (req, res) => {
   con.query(`SELECT * FROM board WHERE id=${req.body.id}`, (err, result) => {
+    const postData = result[0];
+    con.query(
+      `SELECT * FROM comments WHERE post_id=${req.body.id}`,
+      (err, result) => {
+        if (err) console.log(err);
+        const comments = result;
+        res.json({ postData, comments });
+      }
+    );
     if (err) console.log(err);
-    res.json({ result });
   });
 });
 
@@ -66,12 +74,10 @@ router.post("/updateLikes", (req, res) => {
 });
 
 router.post("/postComment", (req, res) => {
-  console.log(req.body.content);
   const sql = `INSERT INTO comments (post_id, content, author) VALUES (${req.body.post_id}, '${req.body.content}', '${req.session.name}')`;
 
   if (req.body.content) {
     con.query(sql, (err, result) => {
-      console.log(result);
       if (err) {
         console.error(err);
         res.json({ message: "댓글 등록 실패❌" });

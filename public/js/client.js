@@ -204,38 +204,64 @@ function renderPost() {
     const send_param = { id: $(e.target.parentNode).attr("data-id") };
 
     $.post("/posts/getPosts", send_param, returnData => {
-      const postData = returnData.result[0];
+      const postData = returnData.postData;
+      const comments = returnData.comments;
+
       let postForm = `
       <div class="post-container centered">
-       <div class="post-data" data-id="${postData.id}">
-          <div class="post-header">${e.target.previousElementSibling.innerText}</div>
-          <div class="post-title">${postData.title}</div>
-          <div class="post-info"><span id="post-author">${postData.author}</span></div>
-          <div class="post-content">${postData.content}</div>
-          <button class="main-button-small button-like" id="post-like-btn" data-count="${postData.like}">👍좋아요</button>
-          <button class="main-button-small button-comment" id="render-comment-btn">📘댓글쓰기</button>
-          <button class="main-button-small button-delete" id="post-delete-btn">👿삭제하기</button>
-          
-         <div>
-          
-          <div class="post-comment-area">
-            <div class="comment-area>
-                <label for="comment">Comment:</label>
-                <br>
-                <textarea class="comment-content" id="comment"></textarea>
-            </div>
-     
-                  <button id="post-comment-btn" class="main-button-small">⭐등록</button>
-       
-          
-         </div>
+  <div class="post-data" data-id="${postData.id}">
+    <div class="post-header">${e.target.previousElementSibling.innerText}</div>
+    <div class="post-title">${postData.title}</div>
+    <div class="post-info">
+      <span id="post-author">${postData.author}</span>
+    </div>
+    <div class="post-content">${postData.content}</div>
 
-        </div>
-      </div>
+    <div>
+      <button
+        class="main-button-small button-like"
+        id="post-like-btn"
+        data-count="${postData.like}"
+      >
+        👍좋아요
+      </button>
+      <button class="main-button-small button-comment" id="render-comment-btn">
+        📘댓글쓰기
+      </button>
+      <button class="main-button-small button-delete" id="post-delete-btn">
+        👿삭제하기
+      </button>
+    </div>
+  </div>
+
+  <div class="post-comments">
+  </div>
+
+  <div class="post-comment-area">
+    <div class="comment-area">
+    <div class="comment-title"><span>댓글</span></div>
+    <textarea class="comment-content" id="comment"></textarea>
+    <div>
+    <button id="post-comment-btn" class="main-button-small">⭐등록</button>
+    </div>
+  </div>
+</div>
+
       `;
+
       $(".board-container").hide();
 
       $("main").prepend(postForm);
+
+      const commentsHTML = [];
+      comments.forEach(comment => {
+        commentsHTML.push(
+          `<div class="comment">${comment.content} - ${comment.author} [${comment.createdAt}]</div>`
+        );
+      });
+      commentsHTML.join("<br>");
+      // console.log(commentsHTML);
+      $(".post-comments").html(commentsHTML);
 
       $("#write-btn").hide();
       $("#board-watch-btn").show();
