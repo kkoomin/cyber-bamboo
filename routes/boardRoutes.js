@@ -65,11 +65,9 @@ router.post("/updateLikes", (req, res) => {
   );
 });
 
-
-
 router.post("/postComment", (req, res) => {
   if (req.session.email) {
-    const sql = `INSERT INTO board comment VALUES '${req.body.content}'`;
+    const sql = `INSERT INTO board comments VALUES '${req.body.content}'`;
     if (req.body.content) {
       con.query(sql, (err, result) => {
         if (err) {
@@ -87,8 +85,5 @@ router.post("/postComment", (req, res) => {
     res.json({ message: "로그인 먼저 하세요🐋" });
   }
 });
-
-
-
 
 module.exports = router;
