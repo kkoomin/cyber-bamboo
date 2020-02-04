@@ -3,11 +3,11 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/signup", (req, res) => {
-  const name = req.body.name;
-  const password = req.body.password;
-  const email = req.body.email;
+  const name = con.escape(req.body.name);
+  const password = con.escape(req.body.password);
+  const email = con.escape(req.body.email);
 
-  var sql = `INSERT INTO users (name,email,password) VALUES ('${name}','${email}','${password}')`;
+  var sql = `INSERT INTO users (name,email,password) VALUES (${name}, ${email}, ${password})`;
 
   con.query(sql, function(err, result) {
     if (err || !name || !email || !password) {
