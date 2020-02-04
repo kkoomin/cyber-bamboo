@@ -18,7 +18,7 @@ $(document).ready(function() {
   incresePostLike();
   postComment();
   renderCommentArea();
-  clicktata();
+  updateMyprofile();
   updateProfileDB();
   deleteComment();
 });
@@ -348,8 +348,8 @@ function postComment() {
   });
 }
 
-function clicktata() {
-  $("#tatata").click(() => {
+function updateMyprofile() {
+  $("#changeMyProfile").click(() => {
     $("#change-info").show();
     $("#myprofile").hide();
   });
