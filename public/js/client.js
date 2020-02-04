@@ -147,8 +147,12 @@ function renderLunch() {
 
 function createPost() {
   $(document).on("click", "#board-write_btn", () => {
-    const title = $("#board-write-title").val();
-    const content = $("#board-write-content").val();
+    const title = $("#board-write-title")
+      .val()
+      .trim();
+    const content = $("#board-write-content")
+      .val()
+      .trim();
 
     const send_param = { title, content };
     $.post("/posts/createPost", send_param, returnData => {
