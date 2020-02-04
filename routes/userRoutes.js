@@ -8,9 +8,18 @@ router.post("/signup", (req, res) => {
   const email = con.escape(req.body.email);
 
   var sql = `INSERT INTO users (name,email,password) VALUES (${name}, ${email}, ${password})`;
+  console.log(`${name}, ${email}, ${password}`);
 
   con.query(sql, function(err, result) {
-    if (err || !name || !email || !password) {
+    if (
+      err ||
+      !name ||
+      !email ||
+      !password ||
+      name == "" ||
+      email == "" ||
+      password == ""
+    ) {
       console.log("Insert Fail⛔");
       console.log(err);
       res.json({ message: `뭔가 잘못됐어요 다시 시도해주세요❗` });
