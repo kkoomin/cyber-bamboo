@@ -4,7 +4,8 @@ const router = express.Router();
 
 router.post("/createPost", (req, res) => {
   if (req.session.email) {
-    const sql = `INSERT INTO board (author,title,content,views) VALUES ('${req.session.name}','${req.body.title}','${req.body.content}', 1)`;
+    let content = req.body.content.replace("<script>", "");
+    const sql = `INSERT INTO board (author,title,content,views) VALUES ('${req.session.name}','${req.body.title}','${content}', 1)`;
     if (req.body.title && req.body.content) {
       con.query(sql, (err, result) => {
         if (err) {
@@ -74,7 +75,8 @@ router.post("/updateLikes", (req, res) => {
 });
 
 router.post("/postComment", (req, res) => {
-  const sql = `INSERT INTO comments (post_id, content, author) VALUES (${req.body.post_id}, '${req.body.content}', '${req.session.name}')`;
+  let content = req.body.content.replace("<script>", "");
+  const sql = `INSERT INTO comments (post_id, content, author) VALUES (${req.body.post_id}, '${content}', '${req.session.name}')`;
 
   if (req.body.content) {
     con.query(sql, (err, result) => {
