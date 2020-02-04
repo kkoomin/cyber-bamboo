@@ -18,6 +18,7 @@ $(document).ready(function() {
   incresePostLike();
   postComment();
   renderCommentArea();
+  deleteComment();
 });
 
 function goHome() {
@@ -256,7 +257,11 @@ function renderPost() {
       const commentsHTML = [];
       comments.forEach(comment => {
         commentsHTML.push(
-          `<div class="comment">${comment.content} - ${comment.author} [${comment.createdAt}]</div>`
+          `<div class="comment" data-id="${comment.id}">
+          ${comment.content} - <span id="comment-author" data-a="${comment.author}">${comment.author}</span> [${comment.createdAt}]           <span class="comment-delete-btn" data-id="${comment.id}">❌</span>
+          </div>
+
+          `
         );
       });
       commentsHTML.join("<br>");
@@ -307,6 +312,17 @@ function postComment() {
     const send_param = { post_id, content };
 
     $.post("/posts/postComment", send_param, returnData => {
+      alert(returnData.message);
+      location.href = "/home";
+    });
+  });
+}
+
+function deleteComment() {
+  $(document).on("click", ".comment-delete-btn", e => {
+    const author = $("#comment-author").attr("data-a");
+    const id = e.target.dataset.id;
+    $.post("/posts/deleteComment", { author, id }, returnData => {
       alert(returnData.message);
       location.href = "/home";
     });

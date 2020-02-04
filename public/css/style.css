@@ -438,6 +438,7 @@ h1 {
   margin: 0.2rem auto;
   padding: 5px;
   border-radius: 5px;
+  font-size: 15px;
 }
 
 .comment-title span {
@@ -451,4 +452,9 @@ h1 {
   width: 60%;
   margin: 0.5rem auto;
   border-bottom: 1px solid var(--shadow);
+}
+
+.comment-delete-btn {
+  cursor: pointer;
+  display: inline;
 }
