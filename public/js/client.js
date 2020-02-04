@@ -310,7 +310,6 @@ function incresePostLike() {
       id: $(e.target.parentNode.parentNode).attr("data-id"),
       likes: $("#post-like-btn").attr("data-count")
     };
-    // console.log(e.target.parentNode.parentNode);
     $.post("/posts/updateLikes", send_param, returnData => {
       alert(returnData.message);
     });
