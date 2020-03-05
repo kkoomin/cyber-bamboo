@@ -1,11 +1,11 @@
 const mysql = require("mysql");
 
 const con = mysql.createConnection({
-  host: "70.12.113.173",
-  user: "test",
-  password: "test",
+  host: "localhost",
+  user: "root",
+  password: "mysql",
   database: "bamboodb",
-  port: "3307",
+  port: "3306",
   dateStrings: "date"
 });
 
