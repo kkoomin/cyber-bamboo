@@ -95,7 +95,7 @@ function renderLogin() {
 function renderWrite() {
   $("#write-btn").click(() => {
     let writeForm = `
-    <div class="write-container speedIn">
+    <div class="write-container">
     <input type="hidden" id="authorName" value="author" />
     <table class="write-table" border="1">
       <tr>
@@ -294,7 +294,6 @@ function renderPost() {
         );
       });
       commentsHTML.join("<br>");
-      // console.log(commentsHTML);
       $(".post-comments").html(commentsHTML);
 
       $("#write-btn").hide();
@@ -357,18 +356,14 @@ function updateMyprofile() {
 function updateProfileDB() {
   $("#fix-profile-btn").click(() => {
     const name = $("#change-user-name").val();
-    const email = $("#change-user-email").val();
+    const password = $("#change-user-password").val();
 
-    const send_param = { name, email };
-    console.log(name + ":" + email);
+    const send_param = { name, password };
     $.post("users/updateProfile", send_param, returnData => {
-      console.log(returnData.user.name);
       $("#change-info").hide();
       $("#myprofile").show();
       $("#login-user-name").html(returnData.user.name);
-      $("#login-user-email").html(returnData.user.email);
-      // console.log(returnData.user);
-      // location.href = "/home";
+      $("#login-user-password").html(returnData.user.password);
     });
     alert("✍내 정보를 변경했습니다.");
   });

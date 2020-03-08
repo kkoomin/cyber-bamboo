@@ -30,7 +30,6 @@ router.post("/signup", (req, res) => {
         res.json({ message: `뭔가 잘못됐어요 다시 시도해주세요❗` });
       } else {
         console.log("Insert Success!✅");
-        console.log(req.body);
         res.json({ message: `회원가입이 완료되었습니다. 환영합니다~💓` });
       }
     });
@@ -69,19 +68,17 @@ router.post("/logout", (req, res) => {
 });
 
 router.post("/updateProfile", (req, res) => {
-  const updateUsername = req.body.name;
-  const updateUseremail = req.body.email;
+  const updateUserName = req.body.name;
+  const updateUserPassword = req.body.password;
 
   con.query(
-    `UPDATE users SET name='${updateUsername}',email='${updateUseremail}' WHERE email='${req.session.email}'`,
+    `UPDATE users SET name='${updateUserName}',password='${updateUserPassword}' WHERE email='${req.session.email}'`,
     (err, result) => {
-      console.log(result);
       if (err) console.log(err);
       // req.session.user = result[0];
       con.query(
         `SELECT * FROM users WHERE id='${req.session.user.id}'`,
         (err, result) => {
-          console.log(result[0]);
           req.session.user = result[0];
           res.json({ user: result[0] });
         }

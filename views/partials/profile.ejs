@@ -2,56 +2,60 @@
   <div class="user-info">
     <h1 class="profile-title">회원정보</h1>
     <div id="myprofile">
-    <table id="login-profile" class="profile-table table-centered" border="1">
+      <!-- <table id="login-profile" class="profile-table table-centered" border="1">
         <thead>
           <tr>
-            <td id="profile-name">닉네임</td id="id">
-            <td id="profile-email">Email</td>
+            <td id="profile-name">닉네임</td>
             <td id="profile-password">Password</td>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td id="login-user-name"><%= user.name %></td>
-            <td id="login-user-email"><%= user.email %></td>
-            <td id="login-user-password"><%= user.password %></td>
-          </tr>          
-        </tbody>
-      </table>
-      <button class="main-button-small" id="changeMyProfile">💖내 정보 수정</button>
-    </div>
-    
-      <div id="change-info">
-        변경할 이름:<input id="change-user-name" placeholder="<%= user.name %>" class="update-profile"/><br>
-        변경할 이메일:<input id="change-user-email" placeholder="<%= user.email %>" class="update-profile"/><br> 
-        <button class="main-button-small" id="fix-profile-btn">✍수정하기</button>       
-      </div>
-
-    
-
-
-      
-      <h1 class="profile-title">내가 쓴 글</h1>
-      <table class="profile-posts-table table-centered" border="1">
-        <thead>
-          <tr>
-            <td id="profile-posts-title">제목</td>
-            <td id="profile-posts-content">내용</td>
-            <td id="profile-posts-createdAt">작성일</td>
+            <td id="login-user-password">
+              <%= user.password %>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-            <% result.forEach(post => {
-                if(post.author == user.name) { %>
-          <tr>
-            <td><%= post.title %></td>
-            <td><%= post.content %></td>
-            <td><%= post.createdAt %></td>
-          </tr>
-          <% }
-        }) %>
         </tbody>
-      </table>
-      
+      </table> -->
+      <button class="main-button-small" id="changeMyProfile">
+        💖내 정보 수정
+      </button>
     </div>
+
+    <div id="change-info">
+      변경할 이름:<input
+        id="change-user-name"
+        value="<%= user.name %>"
+        class="update-profile"
+      /><br />
+      변경할 비밀번호:<input
+        type="password"
+        id="change-user-password"
+        value="<%= user.password %>"
+        class="update-profile"
+      /><br />
+      <button class="main-button-small" id="fix-profile-btn">✍수정하기</button>
+    </div>
+
+    <h1 class="profile-title">내가 쓴 글</h1>
+    <table class="profile-posts-table table-centered" border="1">
+      <thead>
+        <tr>
+          <td id="profile-posts-title">제목</td>
+          <td id="profile-posts-content">내용</td>
+          <td id="profile-posts-createdAt">작성일</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% result.forEach(post => { if(post.author == user.name) { %>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= post.content %></td>
+          <td><%= post.createdAt %></td>
+        </tr>
+        <% } }) %>
+      </tbody>
+    </table>
+  </div>
 </div>
