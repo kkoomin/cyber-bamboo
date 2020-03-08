@@ -46,7 +46,7 @@
    ![Lunch](./demo-img/bam-lunch.gif)
 
 5. 회원 정보 변경 및 글 삭제
-   ![User info Update](./demo-img/bam-login.gif)
+   ![User info Update](./demo-img/bam-changeInfo.gif)
 
 6. 로그아웃
    ![Logout](./demo-img/bam-logout.gif)
